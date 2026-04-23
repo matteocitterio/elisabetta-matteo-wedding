@@ -83,16 +83,16 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 
     const bg = document.querySelector('.bubbles-bg');
     if (bg) {
-        const bgCount = isMobile ? 10 : 18;
+        const bgCount = isMobile ? 25 : 45;
         for (let i = 0; i < bgCount; i++) {
-            bg.appendChild(createBubble({ sizeMin: 8, sizeMax: 18, durMin: isMobile ? 35 : 20, durMax: isMobile ? 60 : 45, delayMax: 6 }));
+            bg.appendChild(createBubble({ sizeMin: 5, sizeMax: 14, durMin: isMobile ? 14 : 8, durMax: isMobile ? 28 : 18, delayMax: 3 }));
         }
     }
 
-    const sectionBubbleCount = isMobile ? 6 : 12;
+    const sectionBubbleCount = isMobile ? 18 : 30;
     document.querySelectorAll('.section-bubbles').forEach(container => {
         for (let i = 0; i < sectionBubbleCount; i++) {
-            container.appendChild(createBubble({ sizeMin: 6, sizeMax: 16, durMin: isMobile ? 30 : 18, durMax: isMobile ? 55 : 42, delayMax: 5 }));
+            container.appendChild(createBubble({ sizeMin: 4, sizeMax: 12, durMin: isMobile ? 12 : 7, durMax: isMobile ? 24 : 16, delayMax: 2.5 }));
         }
     });
 })();
