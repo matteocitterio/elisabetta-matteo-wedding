@@ -153,15 +153,15 @@ body::before {
 
 /* ============================================
    BOLLE — sistema unificato animato
+   FIX: posizione bottom:0 + translate iniziale
+   così le bolle restano sempre dentro il contenitore
    ============================================ */
 
-/* Bolle globali fisse sullo sfondo */
 .bubbles-bg {
     position: fixed; inset: 0;
     pointer-events: none; z-index: 0; overflow: hidden;
 }
 
-/* Bolle locali per ogni sezione */
 .section-bubbles {
     position: absolute;
     inset: 0;
@@ -170,16 +170,14 @@ body::before {
     z-index: 1;
 }
 
-/* Ogni sezione / hero / footer deve contenere le proprie bolle */
 .hero, .section, .footer {
     position: relative;
     overflow: hidden;
 }
 
-/* La bolla animata */
 .bubble {
     position: absolute;
-    bottom: -60px;
+    bottom: 0;
     background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
     border-radius: 50%;
     opacity: 0;
@@ -189,24 +187,21 @@ body::before {
 }
 
 @keyframes floatUp {
-    0%   { transform: translateY(0) translateX(0); opacity: 0; }
+    0%   { transform: translateY(20px) translateX(0);  opacity: 0; }
     10%  { opacity: 0.35; }
     50%  { opacity: 0.4; }
     90%  { opacity: 0.3; }
-    100% { transform: translateY(-120%) translateX(30px); opacity: 0; }
+    100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
 }
 
-/* Mobile: animazione più lenta, meno carico */
 @media (max-width: 768px) {
-    .bubble {
-        animation-duration: 50s !important;
-    }
+    .bubble { animation-duration: 50s !important; }
     @keyframes floatUp {
-        0%   { transform: translateY(0); opacity: 0; }
+        0%   { transform: translateY(20px); opacity: 0; }
         10%  { opacity: 0.28; }
         50%  { opacity: 0.32; }
         90%  { opacity: 0.24; }
-        100% { transform: translateY(-120%); opacity: 0; }
+        100% { transform: translateY(-100vh); opacity: 0; }
     }
 }
 
@@ -717,8 +712,7 @@ main { position: relative; z-index: 1; }
 }
 
 /* ============================================
-   GLIGHTBOX OVERRIDE — immagine sempre intera
-   Forza contain, niente zoom, niente scroll
+   GLIGHTBOX OVERRIDE
    ============================================ */
 .glightbox-clean .gcontainer { background: rgba(20, 20, 20, 0.94); }
 
@@ -740,7 +734,6 @@ main { position: relative; z-index: 1; }
     justify-content: center !important;
 }
 
-/* Mobile: un filo più margine per i controlli */
 @media (max-width: 768px) {
     .gslide-image img,
     .gslider .gslide-media img,
