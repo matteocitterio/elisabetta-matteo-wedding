@@ -95,7 +95,7 @@ body::before {
     letter-spacing: 0.01em;
 }
 
-/* Menu icon: grappolo a triangolo */
+/* Menu icon — grappolo */
 .nav-toggle {
     width: 44px; height: 44px;
     background: none; border: none; cursor: pointer;
@@ -152,81 +152,62 @@ body::before {
 .overlay.active { opacity: 1; pointer-events: auto; }
 
 /* ============================================
-   BOLLE FLOTTANTI DI SFONDO (globali)
-   Desktop: piene, Mobile: ridotte ma presenti
+   BOLLE — sistema unificato animato
    ============================================ */
+
+/* Bolle globali fisse sullo sfondo */
 .bubbles-bg {
     position: fixed; inset: 0;
     pointer-events: none; z-index: 0; overflow: hidden;
 }
-.bubble {
-    position: absolute; bottom: -50px;
-    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
-    border-radius: 50%; opacity: 0;
-    animation: floatUp linear infinite;
+
+/* Bolle locali per ogni sezione */
+.section-bubbles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 1;
 }
+
+/* Ogni sezione / hero / footer deve contenere le proprie bolle */
+.hero, .section, .footer {
+    position: relative;
+    overflow: hidden;
+}
+
+/* La bolla animata */
+.bubble {
+    position: absolute;
+    bottom: -60px;
+    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
+    border-radius: 50%;
+    opacity: 0;
+    animation: floatUp linear infinite;
+    will-change: transform, opacity;
+    box-shadow: 0 1px 2px rgba(176, 141, 55, 0.15);
+}
+
 @keyframes floatUp {
     0%   { transform: translateY(0) translateX(0); opacity: 0; }
-    10%  { opacity: 0.28; }
-    90%  { opacity: 0.22; }
-    100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
+    10%  { opacity: 0.35; }
+    50%  { opacity: 0.4; }
+    90%  { opacity: 0.3; }
+    100% { transform: translateY(-120%) translateX(30px); opacity: 0; }
 }
 
-/* ============================================
-   BOLLE STATICHE PER SEZIONE (.sb)
-   Angoli controllati, opacità bassa
-   ============================================ */
-.section, .hero, .footer { position: relative; overflow: hidden; }
-
-.sb {
-    position: absolute;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
-    pointer-events: none;
-    z-index: 1;
-    box-shadow: 0 1px 3px rgba(176, 141, 55, 0.15);
-}
-
-/* Hero: tre bolle sparse */
-.hero .sb-1 { top: 18%;  left: 8%;  width: 14px; height: 14px; opacity: 0.45; }
-.hero .sb-2 { top: 62%;  right: 10%; width: 10px; height: 10px; opacity: 0.55; }
-.hero .sb-3 { bottom: 15%; left: 15%; width: 8px;  height: 8px;  opacity: 0.4; }
-
-/* RSVP */
-.rsvp .sb-1 { top: 10%;  right: 6%;  width: 12px; height: 12px; opacity: 0.5; }
-.rsvp .sb-2 { bottom: 12%; left: 7%;  width: 10px; height: 10px; opacity: 0.45; }
-
-/* Location */
-.location .sb-1 { top: 14%; left: 6%;  width: 12px; height: 12px; opacity: 0.45; }
-.location .sb-2 { top: 50%; right: 4%; width: 8px;  height: 8px;  opacity: 0.5; }
-.location .sb-3 { bottom: 10%; right: 12%; width: 14px; height: 14px; opacity: 0.4; }
-
-/* Story: bolle più delicate su sfondo warm */
-.story .sb-1 { top: 12%; right: 8%; width: 10px; height: 10px; opacity: 0.5; }
-.story .sb-2 { top: 55%; left: 5%;  width: 14px; height: 14px; opacity: 0.4; }
-.story .sb-3 { bottom: 15%; right: 6%; width: 8px;  height: 8px;  opacity: 0.55; }
-
-/* Registry */
-.registry .sb-1 { top: 15%;  left: 8%;  width: 11px; height: 11px; opacity: 0.5; }
-.registry .sb-2 { bottom: 18%; right: 10%; width: 9px;  height: 9px;  opacity: 0.45; }
-
-/* Gallery */
-.gallery .sb-1 { top: 10%; right: 7%;  width: 13px; height: 13px; opacity: 0.45; }
-.gallery .sb-2 { top: 45%; left: 5%;   width: 8px;  height: 8px;  opacity: 0.5; }
-.gallery .sb-3 { bottom: 12%; left: 18%; width: 10px; height: 10px; opacity: 0.4; }
-
-/* Footer */
-.footer .sb-1 { top: 20%; left: 10%; width: 12px; height: 12px; opacity: 0.5; }
-.footer .sb-2 { top: 50%; right: 12%; width: 9px;  height: 9px;  opacity: 0.45; }
-
-/* Mobile: riduco leggermente scala ma mantengo presenza */
+/* Mobile: animazione più lenta, meno carico */
 @media (max-width: 768px) {
-    .sb { transform: scale(0.75); }
-    /* Tengo solo 2 bolle per sezione su mobile */
-    .hero .sb-3,
-    .location .sb-3,
-    .story .sb-3,
-    .gallery .sb-3 { display: none; }
+    .bubble {
+        animation-duration: 50s !important;
+    }
+    @keyframes floatUp {
+        0%   { transform: translateY(0); opacity: 0; }
+        10%  { opacity: 0.28; }
+        50%  { opacity: 0.32; }
+        90%  { opacity: 0.24; }
+        100% { transform: translateY(-120%); opacity: 0; }
+    }
 }
 
 /* ============================================
@@ -490,22 +471,6 @@ main { position: relative; z-index: 1; }
     .rsvp .container::before { inset: 8px; }
 }
 
-.rsvp-deco {
-    position: absolute;
-    width: 8px; height: 8px;
-    border-radius: 50%;
-    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
-    opacity: 0.7;
-    z-index: 3;
-}
-.rsvp-deco-tl { top: 28px; left: 28px; }
-.rsvp-deco-tr { top: 32px; right: 26px; width: 6px; height: 6px; opacity: 0.55; }
-.rsvp-deco-bl { bottom: 30px; left: 34px; width: 6px; height: 6px; opacity: 0.55; }
-.rsvp-deco-br { bottom: 28px; right: 28px; }
-@media (max-width: 640px) {
-    .rsvp-deco { display: none; }
-}
-
 .explore { margin-top: var(--s-4); }
 .explore-lead {
     font-family: var(--font-display);
@@ -751,8 +716,38 @@ main { position: relative; z-index: 1; }
     display: block;
 }
 
+/* ============================================
+   GLIGHTBOX OVERRIDE — immagine sempre intera
+   Forza contain, niente zoom, niente scroll
+   ============================================ */
 .glightbox-clean .gcontainer { background: rgba(20, 20, 20, 0.94); }
-.gslider img { max-height: 92vh; }
+
+.gslide-image img,
+.gslider .gslide-media img,
+.glightbox-container .gslide-image img {
+    object-fit: contain !important;
+    max-width: 100vw !important;
+    max-height: 88vh !important;
+    width: auto !important;
+    height: auto !important;
+}
+
+.gslide-media {
+    max-width: 100vw !important;
+    max-height: 90vh !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+}
+
+/* Mobile: un filo più margine per i controlli */
+@media (max-width: 768px) {
+    .gslide-image img,
+    .gslider .gslide-media img,
+    .glightbox-container .gslide-image img {
+        max-height: 82vh !important;
+    }
+}
 
 /* ============================================
    FOOTER
@@ -811,6 +806,6 @@ main { position: relative; z-index: 1; }
         transition-duration: 0.01ms !important;
     }
     html { scroll-behavior: auto; }
-    .bubbles-bg { display: none; }
+    .bubbles-bg, .section-bubbles { display: none; }
     .location-card:hover, .gallery-item:hover, .btn-primary:hover { transform: none; }
 }
