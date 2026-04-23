@@ -77,22 +77,22 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         b.style.height = size + 'px';
         b.style.left   = (Math.random() * 100) + '%';
         b.style.animationDuration = (durMin + Math.random() * (durMax - durMin)) + 's';
-        b.style.animationDelay    = (Math.random() * 25) + 's';
+        b.style.animationDelay    = '-' + (Math.random() * (opts.delayMax ?? 25)) + 's';
         return b;
     }
 
     const bg = document.querySelector('.bubbles-bg');
     if (bg) {
-        const bgCount = isMobile ? 5 : 10;
+        const bgCount = isMobile ? 10 : 18;
         for (let i = 0; i < bgCount; i++) {
-            bg.appendChild(createBubble({ sizeMin: 8, sizeMax: 18, durMin: isMobile ? 40 : 25, durMax: isMobile ? 70 : 55 }));
+            bg.appendChild(createBubble({ sizeMin: 8, sizeMax: 18, durMin: isMobile ? 35 : 20, durMax: isMobile ? 60 : 45, delayMax: 6 }));
         }
     }
 
-    const sectionBubbleCount = isMobile ? 3 : 6;
+    const sectionBubbleCount = isMobile ? 6 : 12;
     document.querySelectorAll('.section-bubbles').forEach(container => {
         for (let i = 0; i < sectionBubbleCount; i++) {
-            container.appendChild(createBubble({ sizeMin: 6, sizeMax: 16, durMin: isMobile ? 35 : 22, durMax: isMobile ? 60 : 48 }));
+            container.appendChild(createBubble({ sizeMin: 6, sizeMax: 16, durMin: isMobile ? 30 : 18, durMax: isMobile ? 55 : 42, delayMax: 5 }));
         }
     });
 })();
