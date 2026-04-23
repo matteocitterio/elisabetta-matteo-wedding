@@ -59,29 +59,51 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ============================================
-   BOLLICINE (desktop)
+   SISTEMA BOLLE UNIFICATO
+   - Background globale (fixed)
+   - Bolle per ogni sezione (absolute)
    ============================================ */
 (function initBubbles() {
-    if (window.innerWidth < 768) return;
-    const bg = document.querySelector('.bubbles-bg');
-    if (!bg) return;
-    for (let i = 0; i < 6; i++) {
+    const isMobile = window.innerWidth < 768;
+
+    // Genera bolla singola con parametri random
+    function createBubble(opts = {}) {
         const b = document.createElement('span');
         b.className = 'bubble';
-        const size = 10 + Math.random() * 16;
+        const sizeMin = opts.sizeMin ?? 6;
+        const sizeMax = opts.sizeMax ?? 18;
+        const durMin  = opts.durMin  ?? 22;
+        const durMax  = opts.durMax  ?? 55;
+
+        const size = sizeMin + Math.random() * (sizeMax - sizeMin);
         b.style.width  = size + 'px';
         b.style.height = size + 'px';
         b.style.left   = (Math.random() * 100) + '%';
-        b.style.animationDuration = (35 + Math.random() * 25) + 's';
-        b.style.animationDelay    = (Math.random() * 20) + 's';
-        bg.appendChild(b);
+        b.style.animationDuration = (durMin + Math.random() * (durMax - durMin)) + 's';
+        b.style.animationDelay    = (Math.random() * 25) + 's';
+        return b;
     }
+
+    // Background globale (fixed, tutta la pagina)
+    const bg = document.querySelector('.bubbles-bg');
+    if (bg) {
+        const bgCount = isMobile ? 5 : 10;
+        for (let i = 0; i < bgCount; i++) {
+            bg.appendChild(createBubble({ sizeMin: 8, sizeMax: 18, durMin: isMobile ? 40 : 25, durMax: isMobile ? 70 : 55 }));
+        }
+    }
+
+    // Bolle per ciascuna sezione / hero / footer
+    const sectionBubbleCount = isMobile ? 3 : 6;
+    document.querySelectorAll('.section-bubbles').forEach(container => {
+        for (let i = 0; i < sectionBubbleCount; i++) {
+            container.appendChild(createBubble({ sizeMin: 6, sizeMax: 16, durMin: isMobile ? 35 : 22, durMax: isMobile ? 60 : 48 }));
+        }
+    });
 })();
 
 /* ============================================
    GALLERY + LIGHTBOX
-   - Se window.GALLERY ha elementi → render con <a> lightbox
-   - Altrimenti → 30 placeholder numerati
    ============================================ */
 (function initGallery() {
     const grid = document.getElementById('galleryGrid');
@@ -110,10 +132,14 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
                 touchNavigation: true,
                 loop: true,
                 openEffect: 'fade',
-                closeEffect: 'fade'
+                closeEffect: 'fade',
+                moreText: '',
+                zoomable: false,
+                draggable: true
             });
         }
     } else {
+        // Placeholder numerati
         for (let i = 1; i <= 30; i++) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
