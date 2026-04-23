@@ -1,11 +1,11 @@
 /* ============================================
-   SELF-HOSTED DISPLAY FONT — Charlotte
+   SELF-HOSTED FONT — Charlotte
+   Path esatto dei file sul repo: assets/font/
    ============================================ */
 @font-face {
-    font-family: 'Display Script';
-    src: url('assets/fonts/display.woff2') format('woff2'),
-         url('assets/fonts/display.ttf') format('truetype'),
-         url('assets/fonts/Charlotte.otf') format('opentype');
+    font-family: 'Charlotte';
+    src: url('assets/font/Charlotte.ttf') format('truetype'),
+         url('assets/font/Charlotte.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
     font-display: swap;
@@ -15,16 +15,14 @@
    DESIGN TOKENS
    ============================================ */
 :root {
+    /* Palette cream + gold (verde ritirato) */
     --cream:        #faf8f3;
     --cream-warm:   #f6f1e5;
-    --cream-sage:   #eef0e5;
     --cream-dark:   #f0ebe0;
     --gold:         #c9a84c;
     --gold-dark:    #b08d37;
     --gold-soft:    #e8d27a;
-    --green-dark:   #2d5016;
-    --green-mid:    #4a7d28;
-    --sage:         #8aa87a;
+    --gold-pale:    #d9c27a;
     --text:         #1f1f1f;
     --text-soft:    #6b6b6b;
     --text-light:   #9a9a9a;
@@ -33,11 +31,11 @@
     --shadow-card:  0 14px 40px rgba(74, 59, 19, 0.09), 0 3px 10px rgba(74, 59, 19, 0.05);
     --shadow-photo: 0 20px 50px rgba(74, 59, 19, 0.14), 0 6px 18px rgba(74, 59, 19, 0.08);
 
-    --font-display: 'Display Script', 'Parisienne', 'Brush Script MT', cursive;
+    --font-display: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;
     --font-body:    'Cormorant Garamond', Garamond, 'Times New Roman', serif;
 
     --s-1: 8px;  --s-2: 16px; --s-3: 24px; --s-4: 32px;
-    --s-5: 48px; --s-6: 64px; --s-7: 96px; --s-8: 112px;
+    --s-5: 48px; --s-6: 64px; --s-7: 96px; --s-8: 120px;
 
     --container: 1080px;
     --nav-h: 60px;
@@ -69,8 +67,8 @@ body::before {
     pointer-events: none;
     z-index: 0;
     background:
-        radial-gradient(ellipse 80% 60% at 15% 8%,  rgba(201, 168, 76, 0.07) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 60% at 85% 92%, rgba(45, 80, 22, 0.07) 0%, transparent 55%);
+        radial-gradient(ellipse 80% 60% at 15% 8%,  rgba(201, 168, 76, 0.09) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 60% at 85% 92%, rgba(201, 168, 76, 0.06) 0%, transparent 55%);
 }
 
 /* ============================================
@@ -84,34 +82,39 @@ body::before {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(250, 248, 243, 0.9);
+    background: rgba(250, 248, 243, 0.92);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(201, 168, 76, 0.2);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.22);
     z-index: 100;
 }
 .nav-brand {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 26px;
+    font-size: 28px;
     color: var(--gold-dark);
     text-decoration: none;
     letter-spacing: 0.01em;
 }
+
+/* Menu icon: grappolo di bolle */
 .nav-toggle {
-    width: 34px; height: 34px;
+    width: 40px; height: 40px;
     background: none; border: none; cursor: pointer;
-    display: flex; flex-direction: column;
-    justify-content: center; gap: 6px; padding: 4px;
+    padding: 0;
+    position: relative;
+    color: var(--gold-dark);
+    display: flex; align-items: center; justify-content: center;
 }
-.nav-toggle span {
-    display: block; height: 1.5px;
-    background: var(--green-dark);
-    transition: transform 0.3s ease, opacity 0.3s ease;
+.nav-icon {
+    width: 28px; height: 28px;
+    position: absolute;
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.nav-toggle.active span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
-.nav-toggle.active span:nth-child(2) { opacity: 0; }
-.nav-toggle.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+.nav-icon-open  { opacity: 1; transform: scale(1); }
+.nav-icon-close { opacity: 0; transform: scale(0.7) rotate(-45deg); }
+.nav-toggle.active .nav-icon-open  { opacity: 0; transform: scale(0.7) rotate(45deg); }
+.nav-toggle.active .nav-icon-close { opacity: 1; transform: scale(1) rotate(0); }
 
 /* ============================================
    SIDEBAR
@@ -137,7 +140,7 @@ body::before {
     letter-spacing: 0.24em; text-transform: uppercase;
     color: var(--text); text-decoration: none;
     padding: 18px 0; display: block;
-    border-bottom: 1px solid rgba(45, 80, 22, 0.1);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.22);
     transition: color 0.2s ease, padding-left 0.2s ease;
 }
 .sidebar a:hover { color: var(--gold-dark); padding-left: 8px; }
@@ -151,7 +154,7 @@ body::before {
 .overlay.active { opacity: 1; pointer-events: auto; }
 
 /* ============================================
-   BUBBLES
+   BUBBLES (sfondo desktop)
    ============================================ */
 .bubbles-bg {
     position: fixed; inset: 0;
@@ -165,8 +168,8 @@ body::before {
 }
 @keyframes floatUp {
     0%   { transform: translateY(0) translateX(0); opacity: 0; }
-    10%  { opacity: 0.25; }
-    90%  { opacity: 0.2; }
+    10%  { opacity: 0.3; }
+    90%  { opacity: 0.25; }
     100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
 }
 @media (max-width: 768px) { .bubbles-bg { display: none; } }
@@ -194,7 +197,7 @@ main { position: relative; z-index: 1; }
 .section-title {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(52px, 8vw, 78px);
+    font-size: clamp(56px, 8.5vw, 82px);
     color: var(--gold-dark);
     text-align: center;
     margin-bottom: var(--s-5);
@@ -222,22 +225,27 @@ main { position: relative; z-index: 1; }
 .section-lead strong { color: var(--gold-dark); font-weight: 500; font-style: normal; }
 
 /* ============================================
-   ORNAMENT (separatore decorativo globale)
+   ORNAMENT — 3 bolle dorate (firma visiva)
    ============================================ */
 .ornament {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 10px;
     margin: var(--s-5) auto;
-    color: var(--gold-dark);
-    width: 160px;
-    height: 20px;
 }
-.ornament svg { width: 100%; height: 100%; }
 .ornament-mid { margin: var(--s-6) auto; }
+.dot {
+    display: inline-block;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
+    box-shadow: 0 1px 2px rgba(176, 141, 55, 0.3);
+}
+.dot-sm { width: 6px;  height: 6px;  opacity: 0.75; }
+.dot-md { width: 10px; height: 10px; opacity: 0.95; }
 
 /* ============================================
-   HERO (nuova versione centrata, no background)
+   HERO (foto piccola centrata)
    ============================================ */
 .hero {
     position: relative;
@@ -254,12 +262,11 @@ main { position: relative; z-index: 1; }
     flex-direction: column;
     align-items: center;
 }
-
 .hero-eyebrow {
     font-family: var(--font-body);
     font-style: italic;
     font-size: 22px;
-    color: var(--green-dark);
+    color: var(--gold-dark);
     margin-bottom: var(--s-2);
     letter-spacing: 0.02em;
 }
@@ -272,7 +279,7 @@ main { position: relative; z-index: 1; }
     margin-bottom: var(--s-3);
 }
 .hero-names .amp {
-    color: var(--green-dark);
+    color: var(--gold-soft);
     font-style: italic;
 }
 .hero-date {
@@ -283,41 +290,35 @@ main { position: relative; z-index: 1; }
     margin-bottom: var(--s-6);
 }
 
-/* --- Foto hero con cornice elegante --- */
+/* Foto hero: piccolo medaglione incorniciato */
 .hero-photo {
     width: 100%;
-    max-width: 380px;
+    max-width: 280px;
     margin: 0 auto;
 }
 @media (max-width: 640px) {
-    .hero-photo { max-width: 85%; }
+    .hero-photo { max-width: 75%; }
 }
 .photo-frame {
     position: relative;
     background: var(--cream);
     border: 1px solid var(--gold);
-    padding: 14px;
+    padding: 12px;
     box-shadow: var(--shadow-photo);
 }
 .photo-frame::before {
     content: '';
     position: absolute;
-    inset: 6px;
-    border: 1px solid rgba(201, 168, 76, 0.4);
+    inset: 5px;
+    border: 1px solid rgba(201, 168, 76, 0.35);
     pointer-events: none;
 }
 .photo-frame img {
     width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
-    object-position: center;
+    object-position: center 25%;
     display: block;
-}
-
-/* --- Separatore subito sotto foto --- */
-.hero-inner .ornament {
-    color: var(--gold-dark);
-    margin: var(--s-6) auto var(--s-5);
 }
 
 .hero-quote {
@@ -358,7 +359,7 @@ main { position: relative; z-index: 1; }
     font-family: var(--font-body);
     font-weight: 500;
     font-size: clamp(36px, 6vw, 48px);
-    color: var(--green-dark);
+    color: var(--gold-dark);
     line-height: 1;
 }
 .cd-lbl {
@@ -389,7 +390,7 @@ main { position: relative; z-index: 1; }
 }
 .btn-primary {
     background: var(--gold);
-    color: var(--cream);
+    color: #ffffff;
     border-color: var(--gold);
     box-shadow: 0 4px 14px rgba(201, 168, 76, 0.25);
 }
@@ -411,25 +412,7 @@ main { position: relative; z-index: 1; }
 .btn-lg { padding: 20px 48px; font-size: 15px; letter-spacing: 0.26em; }
 
 /* ============================================
-   DIVIDER
-   ============================================ */
-.divider {
-    display: flex; align-items: center;
-    justify-content: center; gap: var(--s-3);
-    margin: var(--s-6) auto; max-width: 420px;
-}
-.divider::before, .divider::after {
-    content: ''; flex: 1; height: 1px;
-    background: var(--gold); opacity: 0.4;
-}
-.divider-mark::before {
-    content: '•   •   •';
-    font-size: 10px; letter-spacing: 0;
-    color: var(--gold); opacity: 0.7;
-}
-
-/* ============================================
-   RSVP
+   RSVP (con bolle decorative statiche negli angoli)
    ============================================ */
 .rsvp { background: var(--cream-warm); text-align: center; }
 .rsvp .container {
@@ -444,28 +427,37 @@ main { position: relative; z-index: 1; }
     content: '';
     position: absolute;
     inset: 12px;
-    border: 1px solid rgba(201, 168, 76, 0.32);
-    pointer-events: none;
-}
-.rsvp .container::after {
-    content: '';
-    position: absolute;
-    inset: 18px;
-    border: 1px solid rgba(45, 80, 22, 0.12);
+    border: 1px solid rgba(201, 168, 76, 0.3);
     pointer-events: none;
 }
 @media (max-width: 640px) {
     .rsvp .container { padding: var(--s-7) var(--s-3); }
     .rsvp .container::before { inset: 8px; }
-    .rsvp .container::after  { inset: 13px; }
 }
 
-.explore { margin-top: var(--s-6); }
+/* Bolle statiche negli angoli RSVP */
+.rsvp-deco {
+    position: absolute;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
+    opacity: 0.7;
+    z-index: 1;
+}
+.rsvp-deco-tl { top: 28px; left: 28px; }
+.rsvp-deco-tr { top: 32px; right: 26px; width: 6px; height: 6px; opacity: 0.55; }
+.rsvp-deco-bl { bottom: 30px; left: 34px; width: 6px; height: 6px; opacity: 0.55; }
+.rsvp-deco-br { bottom: 28px; right: 28px; }
+@media (max-width: 640px) {
+    .rsvp-deco { display: none; }
+}
+
+.explore { margin-top: var(--s-4); }
 .explore-lead {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 42px;
-    color: var(--green-dark);
+    font-size: 44px;
+    color: var(--gold-dark);
     margin-bottom: var(--s-4);
     line-height: 1.1;
 }
@@ -537,14 +529,14 @@ main { position: relative; z-index: 1; }
     font-family: var(--font-body);
     font-size: 12px; font-weight: 500;
     letter-spacing: 0.34em; text-transform: uppercase;
-    color: var(--green-mid);
+    color: var(--gold-dark);
     margin-bottom: var(--s-3);
 }
 .location-name {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 46px;
-    color: var(--green-dark);
+    font-size: 48px;
+    color: var(--gold-dark);
     line-height: 1.2;
     margin-bottom: var(--s-3);
 }
@@ -568,7 +560,7 @@ main { position: relative; z-index: 1; }
 /* ============================================
    STORY
    ============================================ */
-.story { background: var(--cream-sage); }
+.story { background: var(--cream-warm); }
 .story-text {
     max-width: 720px;
     margin: 0 auto;
@@ -682,13 +674,14 @@ main { position: relative; z-index: 1; }
     justify-content: center;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 32px;
+    font-size: 34px;
     color: var(--gold);
     opacity: 0.6;
     box-shadow: var(--shadow-soft);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
     text-decoration: none;
+    cursor: pointer;
 }
 .gallery-item:hover {
     opacity: 1;
@@ -702,7 +695,7 @@ main { position: relative; z-index: 1; }
     display: block;
 }
 
-.glightbox-clean .gcontainer { background: rgba(20, 20, 20, 0.92); }
+.glightbox-clean .gcontainer { background: rgba(20, 20, 20, 0.94); }
 .gslider img { max-height: 92vh; }
 
 /* ============================================
@@ -714,10 +707,11 @@ main { position: relative; z-index: 1; }
     padding: var(--s-7) var(--s-3) var(--s-5);
     border-top: 1px solid rgba(201, 168, 76, 0.3);
 }
+.footer .ornament { margin-top: 0; margin-bottom: var(--s-4); }
 .footer-names {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 46px;
+    font-size: 48px;
     color: var(--gold-dark);
     line-height: 1;
 }
