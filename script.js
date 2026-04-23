@@ -59,14 +59,11 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ============================================
-   SISTEMA BOLLE UNIFICATO
-   - Background globale (fixed)
-   - Bolle per ogni sezione (absolute)
+   SISTEMA BOLLE
    ============================================ */
 (function initBubbles() {
     const isMobile = window.innerWidth < 768;
 
-    // Genera bolla singola con parametri random
     function createBubble(opts = {}) {
         const b = document.createElement('span');
         b.className = 'bubble';
@@ -84,7 +81,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         return b;
     }
 
-    // Background globale (fixed, tutta la pagina)
     const bg = document.querySelector('.bubbles-bg');
     if (bg) {
         const bgCount = isMobile ? 5 : 10;
@@ -93,7 +89,6 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         }
     }
 
-    // Bolle per ciascuna sezione / hero / footer
     const sectionBubbleCount = isMobile ? 3 : 6;
     document.querySelectorAll('.section-bubbles').forEach(container => {
         for (let i = 0; i < sectionBubbleCount; i++) {
@@ -103,7 +98,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 })();
 
 /* ============================================
-   GALLERY + LIGHTBOX
+   GALLERY + LIGHTBOX (fit garantito + body lock)
    ============================================ */
 (function initGallery() {
     const grid = document.getElementById('galleryGrid');
@@ -135,11 +130,12 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
                 closeEffect: 'fade',
                 moreText: '',
                 zoomable: false,
-                draggable: true
+                draggable: true,
+                onOpen: () => { document.body.classList.add('glightbox-open'); },
+                onClose: () => { document.body.classList.remove('glightbox-open'); }
             });
         }
     } else {
-        // Placeholder numerati
         for (let i = 1; i <= 30; i++) {
             const item = document.createElement('div');
             item.className = 'gallery-item';
