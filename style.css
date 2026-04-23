@@ -1,6 +1,5 @@
 /* ============================================
    SELF-HOSTED FONT — Charlotte
-   Path esatto dei file sul repo: assets/font/
    ============================================ */
 @font-face {
     font-family: 'Charlotte';
@@ -15,7 +14,6 @@
    DESIGN TOKENS
    ============================================ */
 :root {
-    /* Palette cream + gold (verde ritirato) */
     --cream:        #faf8f3;
     --cream-warm:   #f6f1e5;
     --cream-dark:   #f0ebe0;
@@ -97,9 +95,9 @@ body::before {
     letter-spacing: 0.01em;
 }
 
-/* Menu icon: grappolo di bolle */
+/* Menu icon: grappolo a triangolo */
 .nav-toggle {
-    width: 40px; height: 40px;
+    width: 44px; height: 44px;
     background: none; border: none; cursor: pointer;
     padding: 0;
     position: relative;
@@ -107,7 +105,7 @@ body::before {
     display: flex; align-items: center; justify-content: center;
 }
 .nav-icon {
-    width: 28px; height: 28px;
+    width: 32px; height: 32px;
     position: absolute;
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
@@ -154,7 +152,8 @@ body::before {
 .overlay.active { opacity: 1; pointer-events: auto; }
 
 /* ============================================
-   BUBBLES (sfondo desktop)
+   BOLLE FLOTTANTI DI SFONDO (globali)
+   Desktop: piene, Mobile: ridotte ma presenti
    ============================================ */
 .bubbles-bg {
     position: fixed; inset: 0;
@@ -168,18 +167,74 @@ body::before {
 }
 @keyframes floatUp {
     0%   { transform: translateY(0) translateX(0); opacity: 0; }
-    10%  { opacity: 0.3; }
-    90%  { opacity: 0.25; }
+    10%  { opacity: 0.28; }
+    90%  { opacity: 0.22; }
     100% { transform: translateY(-110vh) translateX(40px); opacity: 0; }
 }
-@media (max-width: 768px) { .bubbles-bg { display: none; } }
+
+/* ============================================
+   BOLLE STATICHE PER SEZIONE (.sb)
+   Angoli controllati, opacità bassa
+   ============================================ */
+.section, .hero, .footer { position: relative; overflow: hidden; }
+
+.sb {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
+    pointer-events: none;
+    z-index: 1;
+    box-shadow: 0 1px 3px rgba(176, 141, 55, 0.15);
+}
+
+/* Hero: tre bolle sparse */
+.hero .sb-1 { top: 18%;  left: 8%;  width: 14px; height: 14px; opacity: 0.45; }
+.hero .sb-2 { top: 62%;  right: 10%; width: 10px; height: 10px; opacity: 0.55; }
+.hero .sb-3 { bottom: 15%; left: 15%; width: 8px;  height: 8px;  opacity: 0.4; }
+
+/* RSVP */
+.rsvp .sb-1 { top: 10%;  right: 6%;  width: 12px; height: 12px; opacity: 0.5; }
+.rsvp .sb-2 { bottom: 12%; left: 7%;  width: 10px; height: 10px; opacity: 0.45; }
+
+/* Location */
+.location .sb-1 { top: 14%; left: 6%;  width: 12px; height: 12px; opacity: 0.45; }
+.location .sb-2 { top: 50%; right: 4%; width: 8px;  height: 8px;  opacity: 0.5; }
+.location .sb-3 { bottom: 10%; right: 12%; width: 14px; height: 14px; opacity: 0.4; }
+
+/* Story: bolle più delicate su sfondo warm */
+.story .sb-1 { top: 12%; right: 8%; width: 10px; height: 10px; opacity: 0.5; }
+.story .sb-2 { top: 55%; left: 5%;  width: 14px; height: 14px; opacity: 0.4; }
+.story .sb-3 { bottom: 15%; right: 6%; width: 8px;  height: 8px;  opacity: 0.55; }
+
+/* Registry */
+.registry .sb-1 { top: 15%;  left: 8%;  width: 11px; height: 11px; opacity: 0.5; }
+.registry .sb-2 { bottom: 18%; right: 10%; width: 9px;  height: 9px;  opacity: 0.45; }
+
+/* Gallery */
+.gallery .sb-1 { top: 10%; right: 7%;  width: 13px; height: 13px; opacity: 0.45; }
+.gallery .sb-2 { top: 45%; left: 5%;   width: 8px;  height: 8px;  opacity: 0.5; }
+.gallery .sb-3 { bottom: 12%; left: 18%; width: 10px; height: 10px; opacity: 0.4; }
+
+/* Footer */
+.footer .sb-1 { top: 20%; left: 10%; width: 12px; height: 12px; opacity: 0.5; }
+.footer .sb-2 { top: 50%; right: 12%; width: 9px;  height: 9px;  opacity: 0.45; }
+
+/* Mobile: riduco leggermente scala ma mantengo presenza */
+@media (max-width: 768px) {
+    .sb { transform: scale(0.75); }
+    /* Tengo solo 2 bolle per sezione su mobile */
+    .hero .sb-3,
+    .location .sb-3,
+    .story .sb-3,
+    .gallery .sb-3 { display: none; }
+}
 
 /* ============================================
    LAYOUT
    ============================================ */
 main { position: relative; z-index: 1; }
 
-.section { padding: var(--s-8) var(--s-3); position: relative; }
+.section { padding: var(--s-8) var(--s-3); }
 @media (max-width: 640px) { .section { padding: var(--s-7) var(--s-3); } }
 
 .section:not(.rsvp)::before {
@@ -190,9 +245,10 @@ main { position: relative; z-index: 1; }
     width: 120px; height: 1px;
     background: var(--gold);
     opacity: 0.22;
+    z-index: 2;
 }
 
-.container { max-width: var(--container); margin: 0 auto; }
+.container { max-width: var(--container); margin: 0 auto; position: relative; z-index: 2; }
 
 .section-title {
     font-family: var(--font-display);
@@ -225,7 +281,7 @@ main { position: relative; z-index: 1; }
 .section-lead strong { color: var(--gold-dark); font-weight: 500; font-style: normal; }
 
 /* ============================================
-   ORNAMENT — 3 bolle dorate (firma visiva)
+   ORNAMENT
    ============================================ */
 .ornament {
     display: flex;
@@ -233,6 +289,8 @@ main { position: relative; z-index: 1; }
     align-items: center;
     gap: 10px;
     margin: var(--s-5) auto;
+    position: relative;
+    z-index: 2;
 }
 .ornament-mid { margin: var(--s-6) auto; }
 .dot {
@@ -245,10 +303,9 @@ main { position: relative; z-index: 1; }
 .dot-md { width: 10px; height: 10px; opacity: 0.95; }
 
 /* ============================================
-   HERO (foto piccola centrata)
+   HERO
    ============================================ */
 .hero {
-    position: relative;
     padding: calc(var(--nav-h) + var(--s-6)) var(--s-3) var(--s-8);
     background: var(--cream);
     text-align: center;
@@ -290,7 +347,6 @@ main { position: relative; z-index: 1; }
     margin-bottom: var(--s-6);
 }
 
-/* Foto hero: piccolo medaglione incorniciato */
 .hero-photo {
     width: 100%;
     max-width: 280px;
@@ -412,14 +468,13 @@ main { position: relative; z-index: 1; }
 .btn-lg { padding: 20px 48px; font-size: 15px; letter-spacing: 0.26em; }
 
 /* ============================================
-   RSVP (con bolle decorative statiche negli angoli)
+   RSVP
    ============================================ */
 .rsvp { background: var(--cream-warm); text-align: center; }
 .rsvp .container {
     background: var(--cream);
     max-width: 760px;
     padding: var(--s-8) var(--s-4);
-    position: relative;
     border: 1px solid rgba(201, 168, 76, 0.5);
     box-shadow: var(--shadow-card);
 }
@@ -435,14 +490,13 @@ main { position: relative; z-index: 1; }
     .rsvp .container::before { inset: 8px; }
 }
 
-/* Bolle statiche negli angoli RSVP */
 .rsvp-deco {
     position: absolute;
     width: 8px; height: 8px;
     border-radius: 50%;
     background: radial-gradient(circle at 30% 30%, var(--gold-soft), var(--gold));
     opacity: 0.7;
-    z-index: 1;
+    z-index: 3;
 }
 .rsvp-deco-tl { top: 28px; left: 28px; }
 .rsvp-deco-tr { top: 32px; right: 26px; width: 6px; height: 6px; opacity: 0.55; }
@@ -660,6 +714,8 @@ main { position: relative; z-index: 1; }
     gap: 6px;
     max-width: 1080px;
     margin: 0 auto;
+    position: relative;
+    z-index: 2;
 }
 @media (min-width: 640px)  { .gallery-grid { grid-template-columns: repeat(3, 1fr); gap: 8px; } }
 @media (min-width: 1024px) { .gallery-grid { grid-template-columns: repeat(5, 1fr); gap: 10px; } }
@@ -676,7 +732,7 @@ main { position: relative; z-index: 1; }
     font-weight: 400;
     font-size: 34px;
     color: var(--gold);
-    opacity: 0.6;
+    opacity: 0.8;
     box-shadow: var(--shadow-soft);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     overflow: hidden;
@@ -707,7 +763,11 @@ main { position: relative; z-index: 1; }
     padding: var(--s-7) var(--s-3) var(--s-5);
     border-top: 1px solid rgba(201, 168, 76, 0.3);
 }
-.footer .ornament { margin-top: 0; margin-bottom: var(--s-4); }
+.footer .ornament { margin-top: 0; margin-bottom: var(--s-4); position: relative; z-index: 2; }
+.footer-names,
+.footer-date,
+.footer-slogan,
+.footer-top { position: relative; z-index: 2; }
 .footer-names {
     font-family: var(--font-display);
     font-weight: 400;
@@ -737,6 +797,7 @@ main { position: relative; z-index: 1; }
     color: var(--text-soft);
     text-decoration: none;
     transition: color 0.2s ease;
+    display: inline-block;
 }
 .footer-top:hover { color: var(--gold-dark); }
 
