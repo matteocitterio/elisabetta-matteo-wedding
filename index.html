@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elisabetta & Matteo · 26 Settembre 2026</title>
+    <meta name="description" content="Elisabetta e Matteo si sposano il 26 settembre 2026. Conferma la tua presenza e scopri tutti i dettagli.">
+    <meta name="theme-color" content="#faf8f3">
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon/favicon.svg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- ===== STICKY NAV ===== -->
+    <header class="nav">
+        <a href="#home" class="nav-brand">E &amp; M · 26.09.2026</a>
+        <button class="nav-toggle" id="navToggle" aria-label="Apri menu" aria-expanded="false">
+            <span></span><span></span><span></span>
+        </button>
+    </header>
+
+    <!-- ===== SIDEBAR MENU ===== -->
+    <nav class="sidebar" id="sidebar" aria-label="Menu principale">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+            <li><a href="#location">Location</a></li>
+            <li><a href="#story">La Nostra Storia</a></li>
+            <li><a href="#registry">Lista Nozze</a></li>
+            <li><a href="#gallery">Galleria</a></li>
+        </ul>
+    </nav>
+    <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+    <!-- ===== FLOATING BUBBLES ===== -->
+    <div class="bubbles-bg" aria-hidden="true"></div>
+
+    <main>
+
+        <!-- ===== HERO ===== -->
+        <section id="home" class="hero">
+            <div class="hero-bg" aria-hidden="true"></div>
+            <div class="hero-content">
+                <p class="hero-eyebrow">Ci sposiamo!</p>
+                <h1 class="hero-names">Elisabetta <span class="amp">&amp;</span> Matteo</h1>
+                <p class="hero-date">26 Settembre 2026</p>
+
+                <blockquote class="hero-quote">
+                    «Che l'amore percuota immediatamente l'uomo come una chiamata all'infinito, alla esigenza di tutto, a un volere ogni bene, non c'è chi non lo esperimenti.»
+                    <cite>— A.M. Sicari</cite>
+                </blockquote>
+
+                <div class="countdown" aria-label="Countdown al matrimonio">
+                    <div class="cd-item"><span class="cd-num" id="days">0</span><span class="cd-lbl">Giorni</span></div>
+                    <span class="cd-sep" aria-hidden="true">·</span>
+                    <div class="cd-item"><span class="cd-num" id="hours">0</span><span class="cd-lbl">Ore</span></div>
+                    <span class="cd-sep" aria-hidden="true">·</span>
+                    <div class="cd-item"><span class="cd-num" id="minutes">0</span><span class="cd-lbl">Minuti</span></div>
+                    <span class="cd-sep" aria-hidden="true">·</span>
+                    <div class="cd-item"><span class="cd-num" id="seconds">0</span><span class="cd-lbl">Secondi</span></div>
+                </div>
+
+                <a href="#rsvp" class="btn btn-primary">Conferma la tua presenza</a>
+            </div>
+        </section>
+
+        <!-- ===== RSVP ===== -->
+        <section id="rsvp" class="section rsvp">
+            <div class="container">
+                <h2 class="section-title">Ci Sarai?</h2>
+                <p class="section-lead">
+                    Ci farebbe felici averti con noi il 26 settembre 2026.<br>
+                    Facci sapere se potrai esserci entro il <strong>5 settembre 2026</strong>.
+                </p>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSeSbS-p6_9yFn-WmZgjH7otbLdoBrWzRb05O3tWbp7UGI401A/viewform" target="_blank" rel="noopener" class="btn btn-primary btn-lg">Conferma la tua presenza</a>
+
+                <div class="divider"><span class="divider-mark"></span></div>
+
+                <div class="explore">
+                    <p class="explore-lead">Scopri il resto del sito</p>
+                    <ul class="explore-links">
+                        <li><a href="#location">Location</a></li>
+                        <li><a href="#story">La nostra storia</a></li>
+                        <li><a href="#registry">Lista Nozze</a></li>
+                        <li><a href="#gallery">Galleria</a></li>
+                    </ul>
+                </div>
+
+                <a href="#location" class="scroll-down" aria-label="Scorri alla prossima sezione">↓ <span>Continua</span></a>
+            </div>
+        </section>
+
+        <!-- ===== LOCATION ===== -->
+        <section id="location" class="section location">
+            <div class="container">
+                <h2 class="section-title">Dove</h2>
+                <div class="location-grid">
+
+                    <article class="location-card">
+                        <p class="location-tag">Cerimonia</p>
+                        <h3 class="location-name">Chiesa Parrocchiale<br>di San Paolo Apostolo</h3>
+                        <p class="location-addr">Piazza Don Giuseppe Camagni 1<br>Brugherio, MB</p>
+                        <p class="location-time">Ore 14:30</p>
+                        <a href="https://maps.app.goo.gl/RaPLk4BsPYARjxZi7" target="_blank" rel="noopener" class="btn btn-outline">Apri in Maps</a>
+                    </article>
+
+                    <article class="location-card">
+                        <p class="location-tag">Ricevimento</p>
+                        <h3 class="location-name">Bersi Serlini<br>Franciacorta</h3>
+                        <p class="location-addr">Via Cereto 7<br>Provaglio d'Iseo, BS</p>
+                        <p class="location-time">Dalle 17:00</p>
+                        <a href="https://maps.app.goo.gl/Ph68QqqV83Mwe49K9" target="_blank" rel="noopener" class="btn btn-outline">Apri in Maps</a>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== STORY ===== -->
+        <section id="story" class="section story">
+            <div class="container">
+                <h2 class="section-title">La nostra storia</h2>
+                <div class="story-text">
+                    <p>Davanti a un toast in Piazza Argentina, nel lontano marzo 2018, qualcosa di semplice prese forma.</p>
+                    <p>Eli lo guardò con un sorriso appena accennato, di quelli che sanno già dove vogliono arrivare: «Ciao Citte, io vorrei conoscerti meglio. Più di un amico.» Teo non rispose subito come nei film. Sorrise, con quella leggerezza un po' fuori tempo: «Ah, ok che figo. Sai che in un anno ci sono 3,14 × 10⁷ secondi?».</p>
+                    <p>Un numero buttato lì, sospeso tra il serio e il gioco, eppure bastò.<br>Eli, senza fare calcoli, cascò tra le sue braccia.</p>
+                </div>
+                <div class="story-photos">
+                    <figure class="ph"><figcaption>Il nostro primo incontro</figcaption></figure>
+                    <figure class="ph"><figcaption>Il primo viaggio</figcaption></figure>
+                    <figure class="ph"><figcaption>La proposta</figcaption></figure>
+                    <figure class="ph"><figcaption>Fidanzati</figcaption></figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== REGISTRY ===== -->
+        <section id="registry" class="section registry">
+            <div class="container">
+                <h2 class="section-title">Lista Nozze</h2>
+                <p class="registry-intro">
+                    La vostra presenza è il regalo più importante per noi.<br>
+                    Qualora desideraste farci un dono, ci rendereste felici contribuendo al nostro viaggio di nozze.<br>
+                    Grazie di cuore.
+                </p>
+                <div class="registry-box">
+                    <h3>IBAN</h3>
+                    <dl class="iban">
+                        <dt>Intestato a</dt>
+                        <dd>Matteo Citterio</dd>
+                        <dt>Causale</dt>
+                        <dd>Regalo nozze EliTeo (nome del mittente)</dd>
+                    </dl>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== GALLERY ===== -->
+        <section id="gallery" class="section gallery">
+            <div class="container">
+                <h2 class="section-title">Galleria</h2>
+                <p class="section-lead">Le nostre foto saranno presto qui.</p>
+                <div class="gallery-grid" id="galleryGrid" aria-label="Galleria foto"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <p class="footer-names">Elisabetta &amp; Matteo</p>
+        <p class="footer-date">26.09.2026</p>
+        <p class="footer-slogan"><em>Get ready to get drunk!</em></p>
+        <a href="#home" class="footer-top">↑ Torna su</a>
+    </footer>
+
+    <script src="data/content.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
