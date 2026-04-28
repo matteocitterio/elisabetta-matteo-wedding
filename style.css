@@ -14,6 +14,7 @@
    DESIGN TOKENS
    ============================================ */
 :root {
+    /* --- COLORI --- */
     --cream:        #faf8f3;
     --cream-warm:   #f6f1e5;
     --cream-dark:   #f0ebe0;
@@ -25,18 +26,76 @@
     --text-soft:    #6b6b6b;
     --text-light:   #9a9a9a;
 
+    /* --- OMBRE --- */
     --shadow-soft:  0 4px 20px rgba(74, 59, 19, 0.06), 0 1px 3px rgba(74, 59, 19, 0.04);
     --shadow-card:  0 14px 40px rgba(74, 59, 19, 0.09), 0 3px 10px rgba(74, 59, 19, 0.05);
     --shadow-photo: 0 20px 50px rgba(74, 59, 19, 0.14), 0 6px 18px rgba(74, 59, 19, 0.08);
 
+    /* --- FONT FAMILY --- */
     --font-display: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;
     --font-body:    'Cormorant Garamond', Garamond, 'Times New Roman', serif;
 
+    /* --- SPACING --- */
     --s-1: 8px;  --s-2: 16px; --s-3: 24px; --s-4: 32px;
     --s-5: 48px; --s-6: 64px; --s-7: 96px; --s-8: 120px;
 
+    /* --- LAYOUT --- */
     --container: 1080px;
     --nav-h: 60px;
+
+    /* ============================================
+       FONT SIZE CONTROL PANEL
+       Modifica QUI per cambiare i font in tutto il sito.
+       Tutte le sezioni leggono da queste variabili.
+       ============================================ */
+
+    /* Corpo del testo (paragrafi, prose) */
+    --fs-body:        23px;   /* base mobile */
+    --fs-body-lg:     25px;   /* base desktop */
+    --fs-prose:       25px;   /* paragrafi storia, IBAN values, indirizzi, intro */
+    --fs-quote:       25px;   /* citazione hero */
+    --fs-quote-cite:  21px;   /* "— A.M. Sicari" */
+    --fs-section-lead: 25px;  /* lead "Ci farebbe felici..." */
+
+    /* Titoli grandi (font Charlotte) */
+    --fs-hero-names:    clamp(64px, 12vw, 120px);   /* Elisabetta & Matteo */
+    --fs-section-title: clamp(56px, 8.5vw, 82px);   /* Ci Sarai?, Dove, ecc. */
+    --fs-location-name: 48px;                       /* Chiesa, Bersi Serlini */
+    --fs-display-md:    44px;                       /* explore-lead, IBAN h3 */
+    --fs-display-sm:    34px;                       /* numeri gallery placeholder */
+
+    /* Hero supporting */
+    --fs-hero-eyebrow:  25px;   /* "Ci sposiamo!" */
+    --fs-hero-date:     28px;   /* "26 Settembre 2026" */
+
+    /* Countdown */
+    --fs-cd-num:        clamp(36px, 6vw, 48px);
+    --fs-cd-num-mobile: clamp(24px, 7vw, 36px);
+    --fs-cd-lbl:        13px;
+    --fs-cd-lbl-mobile: 10px;
+    --fs-cd-sep:        26px;
+    --fs-cd-sep-mobile: 18px;
+
+    /* Bottoni */
+    --fs-btn:    18px;
+    --fs-btn-lg: 18px;
+
+    /* Nav */
+    --fs-nav-brand: 28px;
+    --fs-nav-link:  15px;
+
+    /* Tag e label uppercase */
+    --fs-tag:        25px;   /* Cerimonia, Ricevimento, IBAN dt */
+    --fs-time:       24px;   /* Ore 14:30 */
+    --fs-explore:    25px;   /* link Location · Storia · ... */
+    --fs-photo-cap:  14px;   /* didascalia placeholder foto storia */
+    --fs-scroll:     25px;   /* "Continua" sotto RSVP */
+
+    /* Footer */
+    --fs-footer-names:  48px;
+    --fs-footer-date:   20px;
+    --fs-footer-slogan: 20px;
+    --fs-footer-top:    20px;
 }
 
 /* ============================================
@@ -47,14 +106,14 @@ html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 body {
     font-family: var(--font-body);
     font-weight: 400;
-    font-size: 24px;
+    font-size: var(--fs-body);
     line-height: 1.78;
     color: var(--text);
     background-color: var(--cream);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-@media (min-width: 768px) { body { font-size: 28px; } }
+@media (min-width: 768px) { body { font-size: var(--fs-body-lg); } }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
@@ -89,12 +148,11 @@ body::before {
 .nav-brand {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 28px;
+    font-size: var(--fs-nav-brand);
     color: var(--gold-dark);
     text-decoration: none;
     letter-spacing: 0.01em;
 }
-
 .nav-toggle {
     width: 44px; height: 44px;
     background: none; border: none; cursor: pointer;
@@ -133,10 +191,14 @@ body::before {
 .sidebar li { margin-bottom: var(--s-1); }
 .sidebar a {
     font-family: var(--font-body);
-    font-size: 15px; font-weight: 500;
-    letter-spacing: 0.24em; text-transform: uppercase;
-    color: var(--text); text-decoration: none;
-    padding: 18px 0; display: block;
+    font-size: var(--fs-nav-link);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
+    padding: 18px 0;
+    display: block;
     border-bottom: 1px solid rgba(201, 168, 76, 0.22);
     transition: color 0.2s ease, padding-left 0.2s ease;
 }
@@ -146,7 +208,8 @@ body::before {
     position: fixed; inset: 0;
     background: rgba(31, 31, 31, 0.35);
     opacity: 0; pointer-events: none;
-    transition: opacity 0.3s ease; z-index: 98;
+    transition: opacity 0.3s ease;
+    z-index: 98;
 }
 .overlay.active { opacity: 1; pointer-events: auto; }
 
@@ -157,20 +220,14 @@ body::before {
     position: fixed; inset: 0;
     pointer-events: none; z-index: 0; overflow: hidden;
 }
-
 .section-bubbles {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    overflow: hidden;
-    z-index: 1;
+    position: absolute; inset: 0;
+    pointer-events: none; overflow: hidden; z-index: 1;
 }
-
 .hero, .section, .footer {
     position: relative;
     overflow: hidden;
 }
-
 .bubble {
     position: absolute;
     bottom: 0;
@@ -181,7 +238,6 @@ body::before {
     will-change: transform, opacity;
     box-shadow: 0 1px 2px rgba(176, 141, 55, 0.15);
 }
-
 @keyframes floatUp {
     0%   { transform: translateY(20px) translateX(0);  opacity: 0; }
     10%  { opacity: 0.35; }
@@ -189,7 +245,6 @@ body::before {
     90%  { opacity: 0.3; }
     100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
 }
-
 @media (max-width: 768px) {
     .bubble { animation-duration: 50s !important; }
     @keyframes floatUp {
@@ -220,12 +275,17 @@ main { position: relative; z-index: 1; }
     z-index: 2;
 }
 
-.container { max-width: var(--container); margin: 0 auto; position: relative; z-index: 2; }
+.container {
+    max-width: var(--container);
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+}
 
 .section-title {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(56px, 8.5vw, 82px);
+    font-size: var(--fs-section-title);
     color: var(--gold-dark);
     text-align: center;
     margin-bottom: var(--s-5);
@@ -245,7 +305,7 @@ main { position: relative; z-index: 1; }
 .section-lead {
     text-align: center;
     font-style: italic;
-    font-size: 19px;
+    font-size: var(--fs-section-lead);
     color: var(--text-soft);
     max-width: 640px;
     margin: 0 auto var(--s-6);
@@ -294,7 +354,7 @@ main { position: relative; z-index: 1; }
 .hero-eyebrow {
     font-family: var(--font-body);
     font-style: italic;
-    font-size: 22px;
+    font-size: var(--fs-hero-eyebrow);
     color: var(--gold-dark);
     margin-bottom: var(--s-2);
     letter-spacing: 0.02em;
@@ -302,7 +362,7 @@ main { position: relative; z-index: 1; }
 .hero-names {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(64px, 12vw, 120px);
+    font-size: var(--fs-hero-names);
     color: var(--gold-dark);
     line-height: 1;
     margin-bottom: var(--s-3);
@@ -313,7 +373,7 @@ main { position: relative; z-index: 1; }
 }
 .hero-date {
     font-family: var(--font-body);
-    font-size: 24px;
+    font-size: var(--fs-hero-date);
     color: var(--text);
     letter-spacing: 0.06em;
     margin-bottom: var(--s-6);
@@ -353,7 +413,7 @@ main { position: relative; z-index: 1; }
     font-family: var(--font-body);
     font-style: italic;
     font-weight: 300;
-    font-size: 19px;
+    font-size: var(--fs-quote);
     color: var(--text-soft);
     max-width: 580px;
     margin: 0 auto var(--s-6);
@@ -362,7 +422,7 @@ main { position: relative; z-index: 1; }
 .hero-quote cite {
     display: block;
     margin-top: var(--s-2);
-    font-size: 13px;
+    font-size: var(--fs-quote-cite);
     font-style: normal;
     color: var(--text-light);
     letter-spacing: 0.12em;
@@ -386,41 +446,31 @@ main { position: relative; z-index: 1; }
 .cd-num {
     font-family: var(--font-body);
     font-weight: 500;
-    font-size: clamp(36px, 6vw, 48px);
+    font-size: var(--fs-cd-num);
     color: var(--gold-dark);
     line-height: 1;
 }
 .cd-lbl {
     font-family: var(--font-body);
-    font-size: 12px; text-transform: uppercase;
+    font-size: var(--fs-cd-lbl);
+    text-transform: uppercase;
     letter-spacing: 0.26em;
     color: var(--text-soft);
     margin-top: 8px;
 }
 .cd-sep {
-    color: var(--gold); font-size: 26px;
-    line-height: 1; opacity: 0.5;
+    color: var(--gold);
+    font-size: var(--fs-cd-sep);
+    line-height: 1;
+    opacity: 0.5;
 }
 
 @media (max-width: 640px) {
-    .countdown {
-        flex-wrap: nowrap;
-        gap: var(--s-1);
-    }
-    .cd-item {
-        min-width: 0;
-        flex: 1;
-    }
-    .cd-num {
-        font-size: clamp(24px, 7vw, 36px);
-    }
-    .cd-lbl {
-        font-size: 10px;
-        letter-spacing: 0.15em;
-    }
-    .cd-sep {
-        font-size: 18px;
-    }
+    .countdown { flex-wrap: nowrap; gap: var(--s-1); }
+    .cd-item   { min-width: 0; flex: 1; }
+    .cd-num    { font-size: var(--fs-cd-num-mobile); }
+    .cd-lbl    { font-size: var(--fs-cd-lbl-mobile); letter-spacing: 0.15em; }
+    .cd-sep    { font-size: var(--fs-cd-sep-mobile); }
 }
 
 /* ============================================
@@ -429,8 +479,10 @@ main { position: relative; z-index: 1; }
 .btn {
     display: inline-block;
     font-family: var(--font-body);
-    font-size: 14px; font-weight: 500;
-    letter-spacing: 0.24em; text-transform: uppercase;
+    font-size: var(--fs-btn);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
     text-decoration: none;
     padding: 16px 36px;
     border: 1px solid transparent;
@@ -458,7 +510,11 @@ main { position: relative; z-index: 1; }
     background: var(--gold);
     color: var(--cream);
 }
-.btn-lg { padding: 20px 48px; font-size: 15px; letter-spacing: 0.26em; }
+.btn-lg {
+    padding: 20px 48px;
+    font-size: var(--fs-btn-lg);
+    letter-spacing: 0.26em;
+}
 
 /* ============================================
    RSVP
@@ -487,7 +543,7 @@ main { position: relative; z-index: 1; }
 .explore-lead {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 44px;
+    font-size: var(--fs-display-md);
     color: var(--gold-dark);
     margin-bottom: var(--s-4);
     line-height: 1.1;
@@ -500,9 +556,12 @@ main { position: relative; z-index: 1; }
 }
 .explore-links a {
     font-family: var(--font-body);
-    font-size: 15px; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--text); text-decoration: none;
+    font-size: var(--fs-explore);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text);
+    text-decoration: none;
     padding-bottom: 4px;
     border-bottom: 1px solid var(--gold);
     transition: color 0.2s ease, border-color 0.2s ease;
@@ -514,7 +573,7 @@ main { position: relative; z-index: 1; }
     margin-top: var(--s-7);
     font-family: var(--font-body);
     font-style: italic;
-    font-size: 16px;
+    font-size: var(--fs-scroll);
     color: var(--text-soft);
     text-decoration: none;
     animation: bob 2.5s ease-in-out infinite;
@@ -558,28 +617,30 @@ main { position: relative; z-index: 1; }
 
 .location-tag {
     font-family: var(--font-body);
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.34em; text-transform: uppercase;
+    font-size: var(--fs-tag);
+    font-weight: 500;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
     color: var(--gold-dark);
     margin-bottom: var(--s-3);
 }
 .location-name {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 48px;
+    font-size: var(--fs-location-name);
     color: var(--gold-dark);
     line-height: 1.2;
     margin-bottom: var(--s-3);
 }
 .location-addr {
-    font-size: 18px;
+    font-size: var(--fs-prose);
     color: var(--text-soft);
     margin-bottom: var(--s-1);
     line-height: 1.65;
 }
 .location-time {
     font-style: italic;
-    font-size: 19px;
+    font-size: var(--fs-time);
     color: var(--text);
     margin-bottom: var(--s-5);
 }
@@ -598,7 +659,7 @@ main { position: relative; z-index: 1; }
     text-align: center;
 }
 .story-text p {
-    font-size: 20px;
+    font-size: var(--fs-prose);
     line-height: 1.85;
     margin-bottom: var(--s-4);
 }
@@ -632,7 +693,7 @@ main { position: relative; z-index: 1; }
 .ph figcaption {
     font-family: var(--font-body);
     font-style: italic;
-    font-size: 14px;
+    font-size: var(--fs-photo-cap);
     color: var(--text-soft);
     padding: 0 var(--s-2);
     text-align: center;
@@ -646,7 +707,7 @@ main { position: relative; z-index: 1; }
     max-width: 600px;
     margin: 0 auto;
     font-style: italic;
-    font-size: 19px;
+    font-size: var(--fs-prose);
     color: var(--text-soft);
     line-height: 1.78;
 }
@@ -661,7 +722,7 @@ main { position: relative; z-index: 1; }
 .registry-box h3 {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 42px;
+    font-size: var(--fs-display-md);
     color: var(--gold-dark);
     margin-bottom: var(--s-4);
     line-height: 1;
@@ -669,13 +730,15 @@ main { position: relative; z-index: 1; }
 .iban { text-align: left; }
 .iban dt {
     font-family: var(--font-body);
-    font-size: 12px; font-weight: 500;
-    letter-spacing: 0.24em; text-transform: uppercase;
+    font-size: var(--fs-tag);
+    font-weight: 500;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
     color: var(--text-light);
     margin-top: var(--s-3);
 }
 .iban dd {
-    font-size: 19px;
+    font-size: var(--fs-prose);
     color: var(--text);
     margin-top: 4px;
     margin-bottom: var(--s-2);
@@ -707,7 +770,7 @@ main { position: relative; z-index: 1; }
     justify-content: center;
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 34px;
+    font-size: var(--fs-display-sm);
     color: var(--gold);
     opacity: 0.8;
     box-shadow: var(--shadow-soft);
@@ -729,31 +792,23 @@ main { position: relative; z-index: 1; }
 }
 
 /* ============================================
-   GLIGHTBOX OVERRIDE — fit garantito, zero scroll
+   GLIGHTBOX OVERRIDE — fit garantito
    ============================================ */
-
-/* Body lock quando lightbox aperto */
 body.glightbox-open {
     overflow: hidden !important;
     height: 100vh;
 }
-
-/* Container principale */
 .glightbox-container,
 .glightbox-clean .gcontainer,
 .glightbox-container .gcontainer {
     overflow: hidden !important;
     background: rgba(20, 20, 20, 0.96) !important;
 }
-
-/* Slider */
 .glightbox-container .gslider,
 .gslider {
     height: 100vh !important;
     overflow: hidden !important;
 }
-
-/* Singolo slide */
 .glightbox-container .gslide,
 .gslide {
     width: 100vw !important;
@@ -764,8 +819,6 @@ body.glightbox-open {
     padding: 0 !important;
     overflow: hidden !important;
 }
-
-/* Wrapper interno dello slide */
 .gslide-inner-content {
     width: 100% !important;
     height: 100% !important;
@@ -776,8 +829,6 @@ body.glightbox-open {
     justify-content: center !important;
     overflow: hidden !important;
 }
-
-/* Media container */
 .ginner-container,
 .gslide-media,
 .gslide-image {
@@ -791,8 +842,6 @@ body.glightbox-open {
     margin: 0 auto !important;
     overflow: hidden !important;
 }
-
-/* L'immagine: contain + max 96vw / 90vh */
 .glightbox-container .gslide-image img,
 .gslide-image img,
 .gslider img {
@@ -804,7 +853,6 @@ body.glightbox-open {
     margin: 0 auto !important;
     display: block !important;
 }
-
 @media (max-width: 768px) {
     .glightbox-container .gslide-image img,
     .gslide-image img,
@@ -813,11 +861,7 @@ body.glightbox-open {
         max-height: 82vh !important;
     }
 }
-
-/* Frecce e chiudi sempre sopra */
-.gprev, .gnext, .gclose {
-    z-index: 9999 !important;
-}
+.gprev, .gnext, .gclose { z-index: 9999 !important; }
 
 /* ============================================
    FOOTER
@@ -828,21 +872,27 @@ body.glightbox-open {
     padding: var(--s-7) var(--s-3) var(--s-5);
     border-top: 1px solid rgba(201, 168, 76, 0.3);
 }
-.footer .ornament { margin-top: 0; margin-bottom: var(--s-4); position: relative; z-index: 2; }
+.footer .ornament {
+    margin-top: 0;
+    margin-bottom: var(--s-4);
+    position: relative;
+    z-index: 2;
+}
 .footer-names,
 .footer-date,
 .footer-slogan,
 .footer-top { position: relative; z-index: 2; }
+
 .footer-names {
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: 48px;
+    font-size: var(--fs-footer-names);
     color: var(--gold-dark);
     line-height: 1;
 }
 .footer-date {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: var(--fs-footer-date);
     letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--text-soft);
@@ -850,13 +900,13 @@ body.glightbox-open {
 }
 .footer-slogan {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: var(--fs-footer-slogan);
     color: var(--text-light);
     margin-bottom: var(--s-3);
 }
 .footer-top {
     font-family: var(--font-body);
-    font-size: 12px;
+    font-size: var(--fs-footer-top);
     letter-spacing: 0.28em;
     text-transform: uppercase;
     color: var(--text-soft);
