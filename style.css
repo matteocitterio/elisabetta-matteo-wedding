@@ -54,7 +54,7 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-@media (min-width: 768px) { body { font-size: 25px; } }
+@media (min-width: 768px) { body { font-size: 28px; } }
 img { max-width: 100%; display: block; }
 a { color: inherit; }
 
