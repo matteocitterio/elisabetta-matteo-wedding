@@ -63,7 +63,7 @@
 
     /* --- FONT FAMILY --- */
     --font-charlotte: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* solo nomi sposi */
-    --font-display:   'Pinyon Script', 'Charlotte', cursive;                        /* titoli sezione */
+    --font-display:   'Montserrat', 'Helvetica Neue', Arial, sans-serif;                  /* titoli sezione */
     --font-body:      'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* corpo */
 
     /* --- FONT WEIGHTS Montserrat --- */
@@ -100,14 +100,14 @@
 
     /* === TITOLI GRANDI === */
     --fs-hero-names:    clamp(64px, 12vw, 130px);  /* Charlotte: Elisabetta & Matteo */
-    --fs-section-title: clamp(56px, 8.5vw, 88px);  /* Pinyon: Ci Sarai?, Dove, ecc. */
-    --fs-location-name: clamp(40px, 4.5vw, 56px);  /* Pinyon: Chiesa, Bersi Serlini */
-    --fs-display-md:    clamp(38px, 4vw, 50px);    /* Pinyon: explore-lead, IBAN h3 */
-    --fs-display-sm:    34px;                      /* Pinyon: numeri gallery placeholder */
+    --fs-section-title: clamp(38px, 5vw, 56px);     /* Galleria, Lista Nozze, ecc — Montserrat richiede meno px di Pinyon */
+   --fs-location-name: clamp(28px, 3vw, 38px);     /* Chiesa, Bersi Serlini — armonizzati */
+   --fs-display-md:    clamp(28px, 3vw, 36px);     /* Scopri il resto, IBAN h3 */
+   --fs-display-sm:    24px;                       /* numeri gallery placeholder */
 
     /* === HERO SUPPORTING === */
     --fs-hero-eyebrow:  20px;                      /* OVUNQUE: "Ci sposiamo!" */
-    --fs-hero-date:     22px;                      /* OVUNQUE: "26 Settembre 2026" */
+    --fs-hero-date:     clamp(28px, 3.5vw, 36px);   /* "26 Settembre 2026" molto più grande */                      
 
     /* === COUNTDOWN === */
     --fs-cd-num:        clamp(38px, 6vw, 52px);    /* DESKTOP: numeri sopra 640px */
@@ -127,7 +127,7 @@
 
     /* === TAG E LABEL UPPERCASE === */
     --fs-tag:        13px;                         /* OVUNQUE: Cerimonia/Ricevimento, IBAN dt */
-    --fs-time:       21px;                         /* OVUNQUE: "Ore 14:30" */
+    --fs-time:       20px;                         /* OVUNQUE: "Ore 14:30" */
     --fs-explore:    14px;                         /* OVUNQUE: link "Location · Storia · ..." */
     --fs-photo-cap:  14px;                         /* OVUNQUE: didascalia placeholder foto storia */
     --fs-scroll:     16px;                         /* OVUNQUE: "Continua" sotto RSVP */
@@ -325,12 +325,14 @@ main { position: relative; z-index: 1; }
 
 .section-title {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 600;                       /* bold ma non super-bold */
     font-size: var(--fs-section-title);
     color: var(--gold-dark);
     text-align: center;
     margin-bottom: var(--s-5);
-    line-height: 1.1;
+    line-height: 1.2;
+    letter-spacing: 0.04em;                 /* leggera apertura come uppercase elegante */
+    text-transform: uppercase;              /* "GALLERIA", "LISTA NOZZE", ecc */
     position: relative;
     padding-top: var(--s-4);
 }
@@ -418,7 +420,7 @@ main { position: relative; z-index: 1; }
 }
 .hero-date {
     font-family: var(--font-body);
-    font-weight: var(--fw-medium);
+    font-weight: 200;
     font-size: var(--fs-hero-date);
     color: var(--text);
     letter-spacing: 0.06em;
@@ -467,13 +469,14 @@ main { position: relative; z-index: 1; }
 }
 .hero-quote cite {
     display: block;
-    margin-top: var(--s-2);
-    font-size: var(--fs-quote-cite);
-    font-style: normal;
-    font-weight: var(--fw-medium);
-    color: var(--text-light);
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
+    margin-top: var(--s-3);
+    font-family: var(--font-body);
+    font-size: var(--fs-quote);          /* stesso size della citazione */
+    font-style: italic;
+    font-weight: 600;                    /* bold come richiesto */
+    color: var(--text);
+    letter-spacing: 0.04em;
+    text-transform: none;                /* niente uppercase */
 }
 
 /* ============================================
@@ -493,7 +496,7 @@ main { position: relative; z-index: 1; }
 }
 .cd-num {
     font-family: var(--font-body);
-    font-weight: var(--fw-light);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-cd-num);
     color: var(--gold-dark);
     line-height: 1;
@@ -676,10 +679,11 @@ main { position: relative; z-index: 1; }
 }
 .location-name {
     font-family: var(--font-display);
-    font-weight: 400;
+    font-weight: 500;                /* medium per dare peso senza essere greve */
     font-size: var(--fs-location-name);
     color: var(--gold-dark);
-    line-height: 1.2;
+    line-height: 1.3;
+    letter-spacing: 0.02em;
     margin-bottom: var(--s-3);
 }
 .location-addr {
@@ -692,7 +696,8 @@ main { position: relative; z-index: 1; }
 }
 .location-time {
     font-family: var(--font-body);
-    font-weight: var(--fw-medium);
+    font-weight: var(--fw-light);          /* light come l'indirizzo */
+    font-style: italic;                    /* italic per distinguerlo */
     font-size: var(--fs-time);
     color: var(--text);
     margin-bottom: var(--s-5);
@@ -713,8 +718,9 @@ main { position: relative; z-index: 1; }
 }
 .story-text p {
     font-family: var(--font-body);
-    font-weight: var(--fw-light);
-    font-size: var(--fs-prose);
+    font-weight: 200;                       /* thin come hero-date */
+    font-size: var(--fs-quote);             /* stesso size della citazione Sicari */
+    color: var(--text-soft);                /* stesso colore della citazione */
     line-height: 1.85;
     margin-bottom: var(--s-4);
 }
@@ -761,7 +767,7 @@ main { position: relative; z-index: 1; }
 .registry { background: var(--cream-dark); text-align: center; }
 .registry-intro {
     font-family: var(--font-body);
-    font-weight: var(--fw-light);
+    font-weight: var(--fw-regular);
     font-style: italic;
     max-width: 600px;
     margin: 0 auto;
@@ -797,11 +803,12 @@ main { position: relative; z-index: 1; }
 }
 .iban dd {
     font-family: var(--font-body);
-    font-weight: var(--fw-medium);
+    font-weight: 300;                       /* light invece di medium = niente più "documento d'ufficio" */
     font-size: var(--fs-prose);
     color: var(--text);
-    margin-top: 4px;
-    margin-bottom: var(--s-2);
+    margin-top: 6px;
+    margin-bottom: var(--s-3);
+    line-height: 1.5;
 }
 
 /* ============================================
