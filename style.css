@@ -1,12 +1,42 @@
 /* ============================================
-   SELF-HOSTED FONT — Charlotte
+   SELF-HOSTED FONTS
    ============================================ */
+
+/* Charlotte — solo per "Elisabetta & Matteo" + brand nav/footer */
 @font-face {
     font-family: 'Charlotte';
     src: url('assets/font/Charlotte.ttf') format('truetype'),
          url('assets/font/Charlotte.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
+    font-display: swap;
+}
+
+/* Pinyon Script — titoli sezione, location names, IBAN h3 */
+@font-face {
+    font-family: 'Pinyon Script';
+    src: url('assets/font/PinyonScript-Regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Montserrat — corpo del testo (variable: tutti i pesi 100-900) */
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/font/Montserrat-VariableFont_wght.ttf') format('truetype-variations'),
+         url('assets/font/Montserrat-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Montserrat';
+    src: url('assets/font/Montserrat-Italic-VariableFont_wght.ttf') format('truetype-variations'),
+         url('assets/font/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
     font-display: swap;
 }
 
@@ -32,8 +62,15 @@
     --shadow-photo: 0 20px 50px rgba(74, 59, 19, 0.14), 0 6px 18px rgba(74, 59, 19, 0.08);
 
     /* --- FONT FAMILY --- */
-    --font-display: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;
-    --font-body:    'Cormorant Garamond', Garamond, 'Times New Roman', serif;
+    --font-charlotte: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* solo nomi sposi */
+    --font-display:   'Pinyon Script', 'Charlotte', cursive;                        /* titoli sezione */
+    --font-body:      'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* corpo */
+
+    /* --- FONT WEIGHTS Montserrat --- */
+    --fw-light:    300;   /* corpo testo */
+    --fw-regular:  400;
+    --fw-medium:   500;   /* date, luoghi, label */
+    --fw-semibold: 600;
 
     /* --- SPACING --- */
     --s-1: 8px;  --s-2: 16px; --s-3: 24px; --s-4: 32px;
@@ -46,56 +83,60 @@
     /* ============================================
        FONT SIZE CONTROL PANEL
        Modifica QUI per cambiare i font in tutto il sito.
-       Tutte le sezioni leggono da queste variabili.
+       
+       LEGENDA:
+       - Variabili senza suffisso = valgono OVUNQUE
+       - clamp(min, fluido, max) = scala da mobile (min) a desktop (max)
+       - Variabili con suffisso -mobile / -lg = override per breakpoint specifici
        ============================================ */
 
-    /* Corpo del testo (paragrafi, prose) */
-    --fs-body:        23px;   /* base mobile */
-    --fs-body-lg:     50px;   /* base desktop */
-    --fs-prose:       25px;   /* paragrafi storia, IBAN values, indirizzi, intro */
-    --fs-quote:       25px;   /* citazione hero */
-    --fs-quote-cite:  21px;   /* "— A.M. Sicari" */
-    --fs-section-lead: 25px;  /* lead "Ci farebbe felici..." */
+    /* === CORPO DEL TESTO === */
+    --fs-body:         18px;                       /* MOBILE: testo base sotto 768px */
+    --fs-body-lg:      20px;                       /* DESKTOP: testo base sopra 768px */
+    --fs-prose:        20px;                       /* OVUNQUE: paragrafi storia, IBAN values, indirizzi, intro */
+    --fs-quote:        20px;                       /* OVUNQUE: citazione hero */
+    --fs-quote-cite:   14px;                       /* OVUNQUE: "— A.M. Sicari" */
+    --fs-section-lead: 19px;                       /* OVUNQUE: lead "Ci farebbe felici..." */
 
-    /* Titoli grandi (font Charlotte) */
-    --fs-hero-names:    clamp(64px, 12vw, 120px);   /* Elisabetta & Matteo */
-    --fs-section-title: clamp(56px, 8.5vw, 82px);   /* Ci Sarai?, Dove, ecc. */
-    --fs-location-name: 48px;                       /* Chiesa, Bersi Serlini */
-    --fs-display-md:    44px;                       /* explore-lead, IBAN h3 */
-    --fs-display-sm:    34px;                       /* numeri gallery placeholder */
+    /* === TITOLI GRANDI === */
+    --fs-hero-names:    clamp(64px, 12vw, 130px);  /* Charlotte: Elisabetta & Matteo */
+    --fs-section-title: clamp(56px, 8.5vw, 88px);  /* Pinyon: Ci Sarai?, Dove, ecc. */
+    --fs-location-name: clamp(40px, 4.5vw, 56px);  /* Pinyon: Chiesa, Bersi Serlini */
+    --fs-display-md:    clamp(38px, 4vw, 50px);    /* Pinyon: explore-lead, IBAN h3 */
+    --fs-display-sm:    34px;                      /* Pinyon: numeri gallery placeholder */
 
-    /* Hero supporting */
-    --fs-hero-eyebrow:  25px;   /* "Ci sposiamo!" */
-    --fs-hero-date:     28px;   /* "26 Settembre 2026" */
+    /* === HERO SUPPORTING === */
+    --fs-hero-eyebrow:  20px;                      /* OVUNQUE: "Ci sposiamo!" */
+    --fs-hero-date:     22px;                      /* OVUNQUE: "26 Settembre 2026" */
 
-    /* Countdown */
-    --fs-cd-num:        clamp(36px, 6vw, 48px);
-    --fs-cd-num-mobile: clamp(24px, 7vw, 36px);
-    --fs-cd-lbl:        13px;
-    --fs-cd-lbl-mobile: 10px;
-    --fs-cd-sep:        26px;
-    --fs-cd-sep-mobile: 18px;
+    /* === COUNTDOWN === */
+    --fs-cd-num:        clamp(38px, 6vw, 52px);    /* DESKTOP: numeri sopra 640px */
+    --fs-cd-num-mobile: clamp(24px, 7vw, 36px);    /* MOBILE: numeri sotto 640px */
+    --fs-cd-lbl:        12px;                      /* DESKTOP: etichette */
+    --fs-cd-lbl-mobile: 10px;                      /* MOBILE: etichette */
+    --fs-cd-sep:        26px;                      /* DESKTOP: separatore */
+    --fs-cd-sep-mobile: 18px;                      /* MOBILE: separatore */
 
-    /* Bottoni */
-    --fs-btn:    18px;
-    --fs-btn-lg: 18px;
+    /* === BOTTONI === */
+    --fs-btn:    14px;                             /* OVUNQUE: bottone normale */
+    --fs-btn-lg: 15px;                             /* OVUNQUE: bottone large */
 
-    /* Nav */
-    --fs-nav-brand: 28px;
-    --fs-nav-link:  15px;
+    /* === NAV === */
+    --fs-nav-brand: 26px;                          /* OVUNQUE: "E & M · 26.09.2026" */
+    --fs-nav-link:  14px;                          /* OVUNQUE: voci sidebar */
 
-    /* Tag e label uppercase */
-    --fs-tag:        25px;   /* Cerimonia, Ricevimento, IBAN dt */
-    --fs-time:       24px;   /* Ore 14:30 */
-    --fs-explore:    25px;   /* link Location · Storia · ... */
-    --fs-photo-cap:  14px;   /* didascalia placeholder foto storia */
-    --fs-scroll:     25px;   /* "Continua" sotto RSVP */
+    /* === TAG E LABEL UPPERCASE === */
+    --fs-tag:        13px;                         /* OVUNQUE: Cerimonia/Ricevimento, IBAN dt */
+    --fs-time:       21px;                         /* OVUNQUE: "Ore 14:30" */
+    --fs-explore:    14px;                         /* OVUNQUE: link "Location · Storia · ..." */
+    --fs-photo-cap:  14px;                         /* OVUNQUE: didascalia placeholder foto storia */
+    --fs-scroll:     16px;                         /* OVUNQUE: "Continua" sotto RSVP */
 
-    /* Footer */
-    --fs-footer-names:  48px;
-    --fs-footer-date:   20px;
-    --fs-footer-slogan: 20px;
-    --fs-footer-top:    20px;
+    /* === FOOTER === */
+    --fs-footer-names:  clamp(42px, 5vw, 56px);    /* Charlotte: nomi footer */
+    --fs-footer-date:   14px;                      /* OVUNQUE: "26.09.2026" */
+    --fs-footer-slogan: 15px;                      /* OVUNQUE: "Get ready to get drunk!" */
+    --fs-footer-top:    13px;                      /* OVUNQUE: "↑ Torna su" */
 }
 
 /* ============================================
@@ -105,9 +146,9 @@
 html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 body {
     font-family: var(--font-body);
-    font-weight: 400;
+    font-weight: var(--fw-light);
     font-size: var(--fs-body);
-    line-height: 1.78;
+    line-height: 1.7;
     color: var(--text);
     background-color: var(--cream);
     -webkit-font-smoothing: antialiased;
@@ -146,7 +187,7 @@ body::before {
     z-index: 100;
 }
 .nav-brand {
-    font-family: var(--font-display);
+    font-family: var(--font-charlotte);
     font-weight: 400;
     font-size: var(--fs-nav-brand);
     color: var(--gold-dark);
@@ -192,8 +233,8 @@ body::before {
 .sidebar a {
     font-family: var(--font-body);
     font-size: var(--fs-nav-link);
-    font-weight: 500;
-    letter-spacing: 0.24em;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text);
     text-decoration: none;
@@ -303,14 +344,17 @@ main { position: relative; z-index: 1; }
 }
 
 .section-lead {
-    text-align: center;
+    font-family: var(--font-body);
+    font-weight: var(--fw-light);
     font-style: italic;
+    text-align: center;
     font-size: var(--fs-section-lead);
     color: var(--text-soft);
     max-width: 640px;
     margin: 0 auto var(--s-6);
+    line-height: 1.7;
 }
-.section-lead strong { color: var(--gold-dark); font-weight: 500; font-style: normal; }
+.section-lead strong { color: var(--gold-dark); font-weight: var(--fw-medium); font-style: normal; }
 
 /* ============================================
    ORNAMENT
@@ -354,13 +398,14 @@ main { position: relative; z-index: 1; }
 .hero-eyebrow {
     font-family: var(--font-body);
     font-style: italic;
+    font-weight: var(--fw-light);
     font-size: var(--fs-hero-eyebrow);
     color: var(--gold-dark);
     margin-bottom: var(--s-2);
     letter-spacing: 0.02em;
 }
 .hero-names {
-    font-family: var(--font-display);
+    font-family: var(--font-charlotte);
     font-weight: 400;
     font-size: var(--fs-hero-names);
     color: var(--gold-dark);
@@ -373,6 +418,7 @@ main { position: relative; z-index: 1; }
 }
 .hero-date {
     font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-hero-date);
     color: var(--text);
     letter-spacing: 0.06em;
@@ -412,20 +458,22 @@ main { position: relative; z-index: 1; }
 .hero-quote {
     font-family: var(--font-body);
     font-style: italic;
-    font-weight: 300;
+    font-weight: var(--fw-light);
     font-size: var(--fs-quote);
     color: var(--text-soft);
-    max-width: 580px;
+    max-width: 600px;
     margin: 0 auto var(--s-6);
-    line-height: 1.7;
+    line-height: 1.75;
 }
 .hero-quote cite {
     display: block;
     margin-top: var(--s-2);
     font-size: var(--fs-quote-cite);
     font-style: normal;
+    font-weight: var(--fw-medium);
     color: var(--text-light);
-    letter-spacing: 0.12em;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
 }
 
 /* ============================================
@@ -445,13 +493,14 @@ main { position: relative; z-index: 1; }
 }
 .cd-num {
     font-family: var(--font-body);
-    font-weight: 500;
+    font-weight: var(--fw-light);
     font-size: var(--fs-cd-num);
     color: var(--gold-dark);
     line-height: 1;
 }
 .cd-lbl {
     font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-cd-lbl);
     text-transform: uppercase;
     letter-spacing: 0.26em;
@@ -480,8 +529,8 @@ main { position: relative; z-index: 1; }
     display: inline-block;
     font-family: var(--font-body);
     font-size: var(--fs-btn);
-    font-weight: 500;
-    letter-spacing: 0.24em;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     text-decoration: none;
     padding: 16px 36px;
@@ -513,7 +562,7 @@ main { position: relative; z-index: 1; }
 .btn-lg {
     padding: 20px 48px;
     font-size: var(--fs-btn-lg);
-    letter-spacing: 0.26em;
+    letter-spacing: 0.24em;
 }
 
 /* ============================================
@@ -557,7 +606,7 @@ main { position: relative; z-index: 1; }
 .explore-links a {
     font-family: var(--font-body);
     font-size: var(--fs-explore);
-    font-weight: 500;
+    font-weight: var(--fw-medium);
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--text);
@@ -573,6 +622,7 @@ main { position: relative; z-index: 1; }
     margin-top: var(--s-7);
     font-family: var(--font-body);
     font-style: italic;
+    font-weight: var(--fw-light);
     font-size: var(--fs-scroll);
     color: var(--text-soft);
     text-decoration: none;
@@ -618,8 +668,8 @@ main { position: relative; z-index: 1; }
 .location-tag {
     font-family: var(--font-body);
     font-size: var(--fs-tag);
-    font-weight: 500;
-    letter-spacing: 0.34em;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--gold-dark);
     margin-bottom: var(--s-3);
@@ -633,13 +683,16 @@ main { position: relative; z-index: 1; }
     margin-bottom: var(--s-3);
 }
 .location-addr {
+    font-family: var(--font-body);
+    font-weight: var(--fw-light);
     font-size: var(--fs-prose);
     color: var(--text-soft);
     margin-bottom: var(--s-1);
     line-height: 1.65;
 }
 .location-time {
-    font-style: italic;
+    font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-time);
     color: var(--text);
     margin-bottom: var(--s-5);
@@ -659,6 +712,8 @@ main { position: relative; z-index: 1; }
     text-align: center;
 }
 .story-text p {
+    font-family: var(--font-body);
+    font-weight: var(--fw-light);
     font-size: var(--fs-prose);
     line-height: 1.85;
     margin-bottom: var(--s-4);
@@ -693,6 +748,7 @@ main { position: relative; z-index: 1; }
 .ph figcaption {
     font-family: var(--font-body);
     font-style: italic;
+    font-weight: var(--fw-light);
     font-size: var(--fs-photo-cap);
     color: var(--text-soft);
     padding: 0 var(--s-2);
@@ -704,9 +760,11 @@ main { position: relative; z-index: 1; }
    ============================================ */
 .registry { background: var(--cream-dark); text-align: center; }
 .registry-intro {
+    font-family: var(--font-body);
+    font-weight: var(--fw-light);
+    font-style: italic;
     max-width: 600px;
     margin: 0 auto;
-    font-style: italic;
     font-size: var(--fs-prose);
     color: var(--text-soft);
     line-height: 1.78;
@@ -731,13 +789,15 @@ main { position: relative; z-index: 1; }
 .iban dt {
     font-family: var(--font-body);
     font-size: var(--fs-tag);
-    font-weight: 500;
-    letter-spacing: 0.24em;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.22em;
     text-transform: uppercase;
     color: var(--text-light);
     margin-top: var(--s-3);
 }
 .iban dd {
+    font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-prose);
     color: var(--text);
     margin-top: 4px;
@@ -792,7 +852,7 @@ main { position: relative; z-index: 1; }
 }
 
 /* ============================================
-   GLIGHTBOX OVERRIDE — fit garantito
+   GLIGHTBOX OVERRIDE
    ============================================ */
 body.glightbox-open {
     overflow: hidden !important;
@@ -884,7 +944,7 @@ body.glightbox-open {
 .footer-top { position: relative; z-index: 2; }
 
 .footer-names {
-    font-family: var(--font-display);
+    font-family: var(--font-charlotte);
     font-weight: 400;
     font-size: var(--fs-footer-names);
     color: var(--gold-dark);
@@ -892,22 +952,26 @@ body.glightbox-open {
 }
 .footer-date {
     font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-footer-date);
-    letter-spacing: 0.32em;
+    letter-spacing: 0.3em;
     text-transform: uppercase;
     color: var(--text-soft);
     margin: var(--s-2) 0 var(--s-3);
 }
 .footer-slogan {
     font-family: var(--font-body);
+    font-style: italic;
+    font-weight: var(--fw-light);
     font-size: var(--fs-footer-slogan);
     color: var(--text-light);
     margin-bottom: var(--s-3);
 }
 .footer-top {
     font-family: var(--font-body);
+    font-weight: var(--fw-medium);
     font-size: var(--fs-footer-top);
-    letter-spacing: 0.28em;
+    letter-spacing: 0.26em;
     text-transform: uppercase;
     color: var(--text-soft);
     text-decoration: none;
