@@ -51,7 +51,7 @@
 
     /* Corpo del testo (paragrafi, prose) */
     --fs-body:        23px;   /* base mobile */
-    --fs-body-lg:     25px;   /* base desktop */
+    --fs-body-lg:     50px;   /* base desktop */
     --fs-prose:       25px;   /* paragrafi storia, IBAN values, indirizzi, intro */
     --fs-quote:       25px;   /* citazione hero */
     --fs-quote-cite:  21px;   /* "— A.M. Sicari" */
