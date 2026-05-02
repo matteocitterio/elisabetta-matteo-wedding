@@ -834,6 +834,15 @@ main { position: relative; z-index: 1; }
     line-height: 1.5;
 }
 
+.iban dd.iban-code {
+    font-family: 'Courier New', 'Consolas', monospace;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    font-size: var(--fs-prose);
+    word-break: break-all;
+    color: var(--gold-dark);
+}
+
 /* ============================================
    GALLERY
    ============================================ */
