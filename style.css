@@ -106,9 +106,9 @@
 
     /* === FOOTER === */
     --fs-footer-names:  clamp(42px, 5vw, 56px);
-    --fs-footer-date:   14px;
-    --fs-footer-slogan: 15px;
-    --fs-footer-top:    13px;
+    --fs-footer-date:   16px;
+    --fs-footer-slogan: 22px;
+    --fs-footer-top:    15px;
 }
 
 /* ============================================
