@@ -835,17 +835,56 @@ main { position: relative; z-index: 1; }
 }
 
 .iban dd.iban-code {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--s-2);
     font-family: var(--font-display);
     font-weight: 400;
-    font-size: clamp(15px, 3vw, 22px);
+    font-size: clamp(17px, 4vw, 24px);
     color: var(--gold-dark);
     letter-spacing: 0.04em;
     text-transform: uppercase;
-    white-space: nowrap;
-    text-align: left;
-    overflow: visible;
+    text-align: center;
     line-height: 1.3;
+    margin-top: 6px;
+    margin-bottom: var(--s-3);
 }
+.iban dd.iban-code #ibanValue {
+    white-space: nowrap;
+    overflow-x: auto;
+    max-width: 100%;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Bottone "Copia" sotto IBAN */
+.iban-copy {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    color: var(--gold-dark);
+    border: 1px solid var(--gold);
+    padding: 10px 22px;
+    font-family: var(--font-body);
+    font-size: 13px;
+    font-weight: var(--fw-medium);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 0;
+}
+.iban-copy:hover {
+    background: var(--gold);
+    color: #ffffff;
+}
+.iban-copy.copied {
+    background: var(--gold-dark);
+    color: #ffffff;
+    border-color: var(--gold-dark);
+}
+.iban-copy svg { flex-shrink: 0; }
 
 /* ============================================
    GALLERY
