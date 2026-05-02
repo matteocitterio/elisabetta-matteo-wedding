@@ -1,42 +1,15 @@
 /* ============================================
    SELF-HOSTED FONTS
+   Cormorant Garamond viene caricato da Google Fonts in index.html
    ============================================ */
 
-/* Charlotte — solo per "Elisabetta & Matteo" + brand nav/footer */
+/* Charlotte — solo per "Elisabetta & Matteo", brand nav/footer e titoli sezione */
 @font-face {
     font-family: 'Charlotte';
     src: url('assets/font/Charlotte.ttf') format('truetype'),
          url('assets/font/Charlotte.otf') format('opentype');
     font-weight: 400;
     font-style: normal;
-    font-display: swap;
-}
-
-/* Pinyon Script — titoli sezione, location names, IBAN h3 */
-@font-face {
-    font-family: 'Pinyon Script';
-    src: url('assets/font/PinyonScript-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
-}
-
-/* Montserrat — corpo del testo (variable: tutti i pesi 100-900) */
-@font-face {
-    font-family: 'Montserrat';
-    src: url('assets/font/Montserrat-VariableFont_wght.ttf') format('truetype-variations'),
-         url('assets/font/Montserrat-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-}
-
-@font-face {
-    font-family: 'Montserrat';
-    src: url('assets/font/Montserrat-Italic-VariableFont_wght.ttf') format('truetype-variations'),
-         url('assets/font/Montserrat-Italic-VariableFont_wght.ttf') format('truetype');
-    font-weight: 100 900;
-    font-style: italic;
     font-display: swap;
 }
 
@@ -63,14 +36,14 @@
 
     /* --- FONT FAMILY --- */
     --font-charlotte: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* nomi sposi */
-    --font-section:   'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* titoli sezione (Galleria, Dove, ecc.) */
-    --font-display:   'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* sotto-titoli (location names, IBAN h3, ecc.) */
-    --font-body:      'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* corpo */
+    --font-section:   'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* titoli sezione */
+    --font-display:   'Cormorant Garamond', Garamond, 'Times New Roman', serif;    /* location names, IBAN h3 */
+    --font-body:      'Cormorant Garamond', Garamond, 'Times New Roman', serif;    /* corpo, bottoni, menu */
 
-    /* --- FONT WEIGHTS Montserrat --- */
-    --fw-light:    300;   /* corpo testo */
+    /* --- FONT WEIGHTS Cormorant --- */
+    --fw-light:    300;
     --fw-regular:  400;
-    --fw-medium:   500;   /* date, luoghi, label */
+    --fw-medium:   500;
     --fw-semibold: 600;
 
     /* --- SPACING --- */
@@ -83,61 +56,56 @@
 
     /* ============================================
        FONT SIZE CONTROL PANEL
-       Modifica QUI per cambiare i font in tutto il sito.
-       
-       LEGENDA:
-       - Variabili senza suffisso = valgono OVUNQUE
-       - clamp(min, fluido, max) = scala da mobile (min) a desktop (max)
-       - Variabili con suffisso -mobile / -lg = override per breakpoint specifici
        ============================================ */
 
     /* === CORPO DEL TESTO === */
-    --fs-body:         18px;                       /* MOBILE: testo base sotto 768px */
-    --fs-body-lg:      20px;                       /* DESKTOP: testo base sopra 768px */
-    --fs-prose:        20px;                       /* OVUNQUE: paragrafi storia, IBAN values, indirizzi, intro */
-    --fs-quote:        20px;                       /* OVUNQUE: citazione hero */
-    --fs-quote-cite:   14px;                       /* OVUNQUE: "— A.M. Sicari" */
-    --fs-section-lead: 19px;                       /* OVUNQUE: lead "Ci farebbe felici..." */
+    --fs-body:         18px;
+    --fs-body-lg:      20px;
+    --fs-prose:        20px;
+    --fs-quote:        20px;
+    --fs-quote-cite:   14px;
+    --fs-section-lead: 19px;
 
     /* === TITOLI GRANDI === */
-    --fs-hero-names:    clamp(64px, 12vw, 130px);  /* Charlotte: Elisabetta & Matteo */
-    --fs-section-title: clamp(56px, 7.5vw, 84px);     /* Galleria, Lista Nozze, ecc — Montserrat richiede meno px di Pinyon */
-   --fs-location-name: clamp(28px, 3vw, 38px);     /* Chiesa, Bersi Serlini — armonizzati */
-   --fs-display-md:    clamp(28px, 3vw, 36px);     /* Scopri il resto, IBAN h3 */
-   --fs-display-sm:    24px;                       /* numeri gallery placeholder */
+    --fs-hero-names:    clamp(64px, 12vw, 130px);
+    --fs-section-title: clamp(56px, 7.5vw, 84px);
+    --fs-location-name: clamp(28px, 3vw, 38px);
+    --fs-display-md:    clamp(28px, 3vw, 36px);
+    --fs-display-sm:    24px;
 
     /* === HERO SUPPORTING === */
-    --fs-hero-eyebrow:  20px;                      /* OVUNQUE: "Ci sposiamo!" */
-    --fs-hero-date:     clamp(28px, 3.5vw, 36px);   /* "26 Settembre 2026" molto più grande */                      
+    --fs-hero-eyebrow:  20px;
+    --fs-hero-date:     clamp(28px, 3.5vw, 36px);
 
     /* === COUNTDOWN === */
-    --fs-cd-num:        clamp(38px, 6vw, 52px);    /* DESKTOP: numeri sopra 640px */
-    --fs-cd-num-mobile: clamp(24px, 7vw, 36px);    /* MOBILE: numeri sotto 640px */
-    --fs-cd-lbl:        12px;                      /* DESKTOP: etichette */
-    --fs-cd-lbl-mobile: 10px;                      /* MOBILE: etichette */
-    --fs-cd-sep:        26px;                      /* DESKTOP: separatore */
-    --fs-cd-sep-mobile: 18px;                      /* MOBILE: separatore */
+    --fs-cd-num:        clamp(38px, 6vw, 52px);
+    --fs-cd-num-mobile: clamp(24px, 7vw, 36px);
+    --fs-cd-lbl:        12px;
+    --fs-cd-lbl-mobile: 10px;
+    --fs-cd-sep:        26px;
+    --fs-cd-sep-mobile: 18px;
 
     /* === BOTTONI === */
-    --fs-btn:    14px;                             /* OVUNQUE: bottone normale */
-    --fs-btn-lg: 15px;                             /* OVUNQUE: bottone large */
+    --fs-btn:    14px;
+    --fs-btn-lg: 15px;
+    --fs-btn-sm: 12px;
 
     /* === NAV === */
-    --fs-nav-brand: 26px;                          /* OVUNQUE: "E & M · 26.09.2026" */
-    --fs-nav-link:  14px;                          /* OVUNQUE: voci sidebar */
+    --fs-nav-brand: 26px;
+    --fs-nav-link:  14px;
 
     /* === TAG E LABEL UPPERCASE === */
-    --fs-tag:        13px;                         /* OVUNQUE: Cerimonia/Ricevimento, IBAN dt */
-    --fs-time:       20px;                         /* OVUNQUE: "Ore 14:30" */
-    --fs-explore:    14px;                         /* OVUNQUE: link "Location · Storia · ..." */
-    --fs-photo-cap:  14px;                         /* OVUNQUE: didascalia placeholder foto storia */
-    --fs-scroll:     16px;                         /* OVUNQUE: "Continua" sotto RSVP */
+    --fs-tag:        13px;
+    --fs-time:       20px;
+    --fs-explore:    14px;
+    --fs-photo-cap:  14px;
+    --fs-scroll:     16px;
 
     /* === FOOTER === */
-    --fs-footer-names:  clamp(42px, 5vw, 56px);    /* Charlotte: nomi footer */
-    --fs-footer-date:   14px;                      /* OVUNQUE: "26.09.2026" */
-    --fs-footer-slogan: 15px;                      /* OVUNQUE: "Get ready to get drunk!" */
-    --fs-footer-top:    13px;                      /* OVUNQUE: "↑ Torna su" */
+    --fs-footer-names:  clamp(42px, 5vw, 56px);
+    --fs-footer-date:   14px;
+    --fs-footer-slogan: 15px;
+    --fs-footer-top:    13px;
 }
 
 /* ============================================
@@ -147,7 +115,7 @@
 html { scroll-behavior: smooth; scroll-padding-top: var(--nav-h); }
 body {
     font-family: var(--font-body);
-    font-weight: var(--fw-light);
+    font-weight: var(--fw-regular);
     font-size: var(--fs-body);
     line-height: 1.7;
     color: var(--text);
@@ -235,8 +203,8 @@ body::before {
     font-family: var(--font-body);
     font-size: var(--fs-nav-link);
     font-weight: var(--fw-medium);
-    letter-spacing: 0.22em;
-    /*text-transform: uppercase;*/
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
     color: var(--text);
     text-decoration: none;
     padding: 18px 0;
@@ -326,14 +294,12 @@ main { position: relative; z-index: 1; }
 
 .section-title {
     font-family: var(--font-section);
-    font-weight: 600;                       /* bold ma non super-bold */
+    font-weight: 400;
     font-size: var(--fs-section-title);
     color: var(--gold-dark);
     text-align: center;
     margin-bottom: var(--s-5);
     line-height: 1.2;
-    letter-spacing: 0.04em;                 /* leggera apertura come uppercase elegante */
-    text-transform: uppercase;              /* "GALLERIA", "LISTA NOZZE", ecc */
     position: relative;
     padding-top: var(--s-4);
 }
@@ -385,7 +351,7 @@ main { position: relative; z-index: 1; }
    HERO
    ============================================ */
 .hero {
-    padding: calc(var(--nav-h) + var(--s-6)) var(--s-3) var(--s-8);
+    padding: calc(var(--nav-h) + var(--s-3)) var(--s-3) var(--s-8);
     background: var(--cream);
     text-align: center;
 }
@@ -421,7 +387,7 @@ main { position: relative; z-index: 1; }
 }
 .hero-date {
     font-family: var(--font-body);
-    font-weight: 200;
+    font-weight: 300;
     font-size: var(--fs-hero-date);
     color: var(--text);
     letter-spacing: 0.06em;
@@ -472,12 +438,12 @@ main { position: relative; z-index: 1; }
     display: block;
     margin-top: var(--s-3);
     font-family: var(--font-body);
-    font-size: var(--fs-quote);          /* stesso size della citazione */
+    font-size: var(--fs-quote);
     font-style: italic;
-    font-weight: 600;                    /* bold come richiesto */
+    font-weight: 600;
     color: var(--text);
     letter-spacing: 0.04em;
-    text-transform: none;                /* niente uppercase */
+    text-transform: none;
 }
 
 /* ============================================
@@ -561,12 +527,50 @@ main { position: relative; z-index: 1; }
 }
 .btn-outline:hover {
     background: var(--gold);
-    color: var(--cream);
+    color: #ffffff;
 }
 .btn-lg {
     padding: 20px 48px;
     font-size: var(--fs-btn-lg);
     letter-spacing: 0.24em;
+}
+.btn-sm {
+    padding: 10px 18px;
+    font-size: var(--fs-btn-sm);
+    letter-spacing: 0.18em;
+}
+
+/* ============================================
+   PARKING INFO (sotto Cerimonia)
+   ============================================ */
+.parking-info {
+    margin-top: var(--s-4);
+    padding-top: var(--s-4);
+    border-top: 1px dashed rgba(201, 168, 76, 0.35);
+    text-align: center;
+}
+.parking-note {
+    font-family: var(--font-body);
+    font-weight: var(--fw-light);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-soft);
+    margin-bottom: var(--s-3);
+    line-height: 1.6;
+    max-width: 360px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.parking-note strong {
+    color: var(--gold-dark);
+    font-weight: var(--fw-medium);
+    font-style: normal;
+}
+.parking-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--s-1);
 }
 
 /* ============================================
@@ -647,7 +651,7 @@ main { position: relative; z-index: 1; }
     gap: var(--s-4); max-width: 880px; margin: 0 auto;
 }
 @media (min-width: 768px) {
-    .location-grid { grid-template-columns: 1fr 1fr; gap: var(--s-5); }
+    .location-grid { grid-template-columns: 1fr 1fr; gap: var(--s-5); align-items: start; }
 }
 .location-card {
     background: var(--cream);
@@ -680,7 +684,7 @@ main { position: relative; z-index: 1; }
 }
 .location-name {
     font-family: var(--font-display);
-    font-weight: 500;                /* medium per dare peso senza essere greve */
+    font-weight: 500;
     font-size: var(--fs-location-name);
     color: var(--gold-dark);
     line-height: 1.3;
@@ -697,8 +701,8 @@ main { position: relative; z-index: 1; }
 }
 .location-time {
     font-family: var(--font-body);
-    font-weight: var(--fw-light);          /* light come l'indirizzo */
-    font-style: italic;                    /* italic per distinguerlo */
+    font-weight: var(--fw-light);
+    font-style: italic;
     font-size: var(--fs-time);
     color: var(--text);
     margin-bottom: var(--s-5);
@@ -719,9 +723,9 @@ main { position: relative; z-index: 1; }
 }
 .story-text p {
     font-family: var(--font-body);
-    font-weight: 200;                       /* thin come hero-date */
-    font-size: var(--fs-quote);             /* stesso size della citazione Sicari */
-    color: var(--text-soft);                /* stesso colore della citazione */
+    font-weight: 300;
+    font-size: var(--fs-quote);
+    color: var(--text-soft);
     line-height: 1.85;
     margin-bottom: var(--s-4);
 }
@@ -751,7 +755,18 @@ main { position: relative; z-index: 1; }
     inset: 10px;
     border: 1px solid rgba(201, 168, 76, 0.25);
     pointer-events: none;
+    z-index: 1;
 }
+.ph img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+}
+.ph:has(img) figcaption { display: none; }
 .ph figcaption {
     font-family: var(--font-body);
     font-style: italic;
@@ -804,7 +819,7 @@ main { position: relative; z-index: 1; }
 }
 .iban dd {
     font-family: var(--font-body);
-    font-weight: 300;                       /* light invece di medium = niente più "documento d'ufficio" */
+    font-weight: 300;
     font-size: var(--fs-prose);
     color: var(--text);
     margin-top: 6px;
