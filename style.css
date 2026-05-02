@@ -1022,17 +1022,8 @@ body.glightbox-open {
     display: inline-block;
 }
 .footer-top:hover { color: var(--gold-dark); }
-/* ...tutte le altre regole sopra... */
 
-/* ============================================
-   FOOTER
-   ============================================ */
-.footer { ... }
-/* ...resto del footer... */
-.footer-top:hover { color: var(--gold-dark); }
-
-
-/* ============================================        ← INCOLLA QUI
+/* ============================================        
    MOBILE — leggibilità testo (nonni-friendly)
    ============================================ */
 @media (max-width: 640px) {
@@ -1053,7 +1044,6 @@ body.glightbox-open {
     .hero-date {
         font-size: clamp(22px, 5vw, 28px);
     }
-    .location-time,
     .iban dt,
     .location-tag {
         font-size: 14px;
@@ -1068,10 +1058,6 @@ body.glightbox-open {
 }
 
 
-/* ============================================
-   REDUCED MOTION
-   ============================================ */
-@media (prefers-reduced-motion: reduce) { ... }
 /* ============================================
    REDUCED MOTION
    ============================================ */
