@@ -99,7 +99,7 @@
 
     /* === TAG E LABEL UPPERCASE === */
     --fs-tag:        13px;
-    --fs-time:       20px;
+    --fs-time:       var(--fs-prose);
     --fs-explore:    14px;
     --fs-photo-cap:  14px;
     --fs-scroll:     16px;
