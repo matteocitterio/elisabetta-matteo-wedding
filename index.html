@@ -262,7 +262,16 @@
                     <h3>IBAN</h3>
                     <dl class="iban">
     <dt>IBAN</dt>
-    <dd class="iban-code">IT72D0357601601010005061809</dd>
+    <dd class="iban-code">
+        <span id="ibanValue">IT72D0357601601010005061809</span>
+        <button type="button" class="iban-copy" id="ibanCopyBtn" aria-label="Copia IBAN">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+            </svg>
+            <span class="iban-copy-label">Copia</span>
+        </button>
+    </dd>
     <dt>Intestato a</dt>
     <dd>Matteo Citterio</dd>
     <dt>Causale</dt>
