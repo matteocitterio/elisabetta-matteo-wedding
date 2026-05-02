@@ -235,7 +235,7 @@ body::before {
     font-size: var(--fs-nav-link);
     font-weight: var(--fw-medium);
     letter-spacing: 0.22em;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     color: var(--text);
     text-decoration: none;
     padding: 18px 0;
