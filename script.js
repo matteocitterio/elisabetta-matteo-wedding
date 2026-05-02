@@ -190,3 +190,42 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
         }
     }
 })();
+
+/* ============================================
+   IBAN COPY
+   ============================================ */
+(function initIbanCopy() {
+    const btn = document.getElementById('ibanCopyBtn');
+    const val = document.getElementById('ibanValue');
+    if (!btn || !val) return;
+
+    const labelEl = btn.querySelector('.iban-copy-label');
+    const originalText = labelEl ? labelEl.textContent : 'Copia';
+
+    btn.addEventListener('click', async () => {
+        const ibanText = val.textContent.trim();
+        const showCopied = () => {
+            btn.classList.add('copied');
+            if (labelEl) labelEl.textContent = 'Copiato!';
+            setTimeout(() => {
+                btn.classList.remove('copied');
+                if (labelEl) labelEl.textContent = originalText;
+            }, 2000);
+        };
+        try {
+            await navigator.clipboard.writeText(ibanText);
+            showCopied();
+        } catch (err) {
+            // Fallback browser vecchi
+            const textarea = document.createElement('textarea');
+            textarea.value = ibanText;
+            textarea.style.position = 'fixed';
+            textarea.style.left = '-9999px';
+            document.body.appendChild(textarea);
+            textarea.select();
+            try { document.execCommand('copy'); } catch (e) {}
+            document.body.removeChild(textarea);
+            showCopied();
+        }
+    });
+})();
