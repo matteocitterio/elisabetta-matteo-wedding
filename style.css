@@ -835,12 +835,12 @@ main { position: relative; z-index: 1; }
 }
 
 .iban dd.iban-code {
-    font-family: 'Courier New', 'Consolas', monospace;
-    font-weight: 500;
-    letter-spacing: 0.06em;
-    font-size: var(--fs-prose);
-    word-break: break-all;
-    color: var(--gold-dark);
+    font-family: var(--font-body);             /* stesso font di "Matteo Citterio" */
+    font-weight: 300;                          /* light come gli altri dd */
+    font-size: var(--fs-prose);                /* stessa size */
+    color: var(--text);                        /* stesso colore */
+    letter-spacing: 0.04em;                    /* leggera apertura per leggibilità del codice */
+    word-break: break-all;                     /* va a capo se troppo lungo su mobile */
 }
 
 /* ============================================
