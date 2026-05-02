@@ -741,11 +741,15 @@ main { position: relative; z-index: 1; }
 }
 
 .ph {
+    display: block;                 /* ← AGGIUNTA: fa sì che <a> si comporti come un blocco */
+    cursor: pointer;                /* ← AGGIUNTA: mostra la manina al passaggio del mouse */
+    text-decoration: none;          /* ← AGGIUNTA: niente sottolineatura blu sotto la foto */
     position: relative;
     background: var(--cream);
     border: 1px solid rgba(201, 168, 76, 0.3);
     aspect-ratio: 4 / 5;
-    display: flex; align-items: center; justify-content: center;
+    align-items: center; 
+    justify-content: center;
     overflow: hidden;
     box-shadow: var(--shadow-soft);
 }
