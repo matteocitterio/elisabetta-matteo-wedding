@@ -59,40 +59,72 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
 });
 
 /* ============================================
-   SISTEMA BOLLE
+   SISTEMA BOLLE — effetto calice di spumante
+   Bolle pre-distribuite su tutta la pagina/sezione
    ============================================ */
 (function initBubbles() {
     const isMobile = window.innerWidth < 768;
 
+    /**
+     * Crea una bolla con posizione casuale orizzontale + verticale.
+     * Il trucco: animationDelay negativo random fa partire l'animazione
+     * "a metà corsa", quindi al primo frame le bolle sono già sparse.
+     */
     function createBubble(opts = {}) {
         const b = document.createElement('span');
         b.className = 'bubble';
-        const sizeMin = opts.sizeMin ?? 6;
-        const sizeMax = opts.sizeMax ?? 18;
-        const durMin  = opts.durMin  ?? 22;
-        const durMax  = opts.durMax  ?? 55;
 
+        const sizeMin  = opts.sizeMin  ?? 5;
+        const sizeMax  = opts.sizeMax  ?? 14;
+        const durMin   = opts.durMin   ?? 8;
+        const durMax   = opts.durMax   ?? 18;
+
+        // Dimensione random
         const size = sizeMin + Math.random() * (sizeMax - sizeMin);
         b.style.width  = size + 'px';
         b.style.height = size + 'px';
+
+        // Posizione X random su tutta la larghezza
         b.style.left   = (Math.random() * 100) + '%';
-        b.style.animationDuration = (durMin + Math.random() * (durMax - durMin)) + 's';
-        b.style.animationDelay    = '-' + (Math.random() * (opts.delayMax ?? 25)) + 's';
+
+        // Posizione Y di partenza: random tra il fondo e poco sopra
+        // (così alcune bolle nascono dal basso, altre già a mezza altezza)
+        b.style.bottom = (Math.random() * 30 - 10) + '%';
+
+        // Durata random per vario movimento
+        const duration = durMin + Math.random() * (durMax - durMin);
+        b.style.animationDuration = duration + 's';
+
+        // Delay NEGATIVO random fino a -duration: la bolla parte
+        // come se l'animazione fosse iniziata x secondi fa.
+        // Questo è ciò che riempie subito la pagina di bolle distribuite.
+        b.style.animationDelay = '-' + (Math.random() * duration) + 's';
+
         return b;
     }
 
+    // Bolle di sfondo globale (fixed, persistono durante lo scroll)
     const bg = document.querySelector('.bubbles-bg');
     if (bg) {
-        const bgCount = isMobile ? 40 : 45;
+        const bgCount = isMobile ? 35 : 50;
         for (let i = 0; i < bgCount; i++) {
-            bg.appendChild(createBubble({ sizeMin: 5, sizeMax: 14, durMin: isMobile ? 14 : 8, durMax: isMobile ? 28 : 18, delayMax: 3 }));
+            bg.appendChild(createBubble({
+                sizeMin: 5, sizeMax: 14,
+                durMin:  isMobile ? 12 : 10,
+                durMax:  isMobile ? 24 : 20
+            }));
         }
     }
 
-    const sectionBubbleCount = isMobile ? 25 : 30;
+    // Bolle per ogni sezione (assolute, ancorate al contenuto)
+    const sectionBubbleCount = isMobile ? 22 : 30;
     document.querySelectorAll('.section-bubbles').forEach(container => {
         for (let i = 0; i < sectionBubbleCount; i++) {
-            container.appendChild(createBubble({ sizeMin: 4, sizeMax: 12, durMin: isMobile ? 12 : 7, durMax: isMobile ? 24 : 16, delayMax: 2.5 }));
+            container.appendChild(createBubble({
+                sizeMin: 4, sizeMax: 12,
+                durMin:  isMobile ? 10 : 8,
+                durMax:  isMobile ? 22 : 18
+            }));
         }
     });
 })();
