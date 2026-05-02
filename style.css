@@ -835,12 +835,22 @@ main { position: relative; z-index: 1; }
 }
 
 .iban dd.iban-code {
-    font-family: var(--font-body);             /* stesso font di "Matteo Citterio" */
-    font-weight: 300;                          /* light come gli altri dd */
-    font-size: var(--fs-prose);                /* stessa size */
-    color: var(--text);                        /* stesso colore */
-    letter-spacing: 0.04em;                    /* leggera apertura per leggibilità del codice */
-    word-break: break-all;                     /* va a capo se troppo lungo su mobile */
+    font-family: var(--font-body);
+    font-weight: 300;
+    font-size: var(--fs-prose);
+    color: var(--text);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 640px) {
+    .iban dd.iban-code {
+        font-size: 16px;
+        letter-spacing: 0.02em;
+    }
 }
 
 /* ============================================
