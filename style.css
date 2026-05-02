@@ -62,8 +62,9 @@
     --shadow-photo: 0 20px 50px rgba(74, 59, 19, 0.14), 0 6px 18px rgba(74, 59, 19, 0.08);
 
     /* --- FONT FAMILY --- */
-    --font-charlotte: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* solo nomi sposi */
-    --font-display:   'Charlotte', 'Helvetica Neue', Arial, sans-serif;                  /* titoli sezione */
+    --font-charlotte: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* nomi sposi */
+    --font-section:   'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* titoli sezione (Galleria, Dove, ecc.) */
+    --font-display:   'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* sotto-titoli (location names, IBAN h3, ecc.) */
     --font-body:      'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* corpo */
 
     /* --- FONT WEIGHTS Montserrat --- */
@@ -100,7 +101,7 @@
 
     /* === TITOLI GRANDI === */
     --fs-hero-names:    clamp(64px, 12vw, 130px);  /* Charlotte: Elisabetta & Matteo */
-    --fs-section-title: clamp(38px, 5vw, 56px);     /* Galleria, Lista Nozze, ecc — Montserrat richiede meno px di Pinyon */
+    --fs-section-title: clamp(56px, 7.5vw, 84px);     /* Galleria, Lista Nozze, ecc — Montserrat richiede meno px di Pinyon */
    --fs-location-name: clamp(28px, 3vw, 38px);     /* Chiesa, Bersi Serlini — armonizzati */
    --fs-display-md:    clamp(28px, 3vw, 36px);     /* Scopri il resto, IBAN h3 */
    --fs-display-sm:    24px;                       /* numeri gallery placeholder */
@@ -324,7 +325,7 @@ main { position: relative; z-index: 1; }
 }
 
 .section-title {
-    font-family: var(--font-display);
+    font-family: var(--font-section);
     font-weight: 600;                       /* bold ma non super-bold */
     font-size: var(--fs-section-title);
     color: var(--gold-dark);
