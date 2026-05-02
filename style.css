@@ -59,12 +59,15 @@
        ============================================ */
 
     /* === CORPO DEL TESTO === */
-    --fs-body:         18px;
-    --fs-body-lg:      20px;
-    --fs-prose:        20px;
-    --fs-quote:        20px;
-    --fs-quote-cite:   14px;
-    --fs-section-lead: 19px;
+    --fs-body:         20px;     /* MOBILE: era 18 */
+--fs-body-lg:      20px;     /* DESKTOP: invariato */
+--fs-prose:        20px;     /* OVUNQUE: invariato */
+--fs-prose-mobile: 19px;     /* MOBILE override per prose */
+--fs-quote:        20px;
+--fs-quote-mobile: 19px;     /* MOBILE override per quote */
+--fs-quote-cite:   15px;     /* era 14 */
+--fs-section-lead: 19px;
+--fs-section-lead-mobile: 18px;
 
     /* === TITOLI GRANDI === */
     --fs-hero-names:    clamp(64px, 12vw, 130px);
