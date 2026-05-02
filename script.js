@@ -135,6 +135,20 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
                 onClose: () => { document.body.classList.remove('glightbox-open'); }
             });
         }
+       if (typeof GLightbox !== 'undefined') {
+    GLightbox({
+        selector: '.ph[data-glightbox]',
+        touchNavigation: true,
+        loop: true,
+        openEffect: 'fade',
+        closeEffect: 'fade',
+        moreText: '',
+        zoomable: false,
+        draggable: true,
+        onOpen: () => { document.body.classList.add('glightbox-open'); },
+        onClose: () => { document.body.classList.remove('glightbox-open'); }
+    });
+}
     } else {
         for (let i = 1; i <= 30; i++) {
             const item = document.createElement('div');
