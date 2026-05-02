@@ -63,7 +63,7 @@
 
     /* --- FONT FAMILY --- */
     --font-charlotte: 'Charlotte', 'Parisienne', 'Brush Script MT', cursive;        /* solo nomi sposi */
-    --font-display:   'Montserrat', 'Helvetica Neue', Arial, sans-serif;                  /* titoli sezione */
+    --font-display:   'Charlotte', 'Helvetica Neue', Arial, sans-serif;                  /* titoli sezione */
     --font-body:      'Montserrat', 'Helvetica Neue', Arial, sans-serif;            /* corpo */
 
     /* --- FONT WEIGHTS Montserrat --- */
